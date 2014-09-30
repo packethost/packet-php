@@ -1,4 +1,18 @@
-vendor
+/vendor
+composer.phar
+composer.lock
+.env.*.php
+.env.php
+.DS_Store
+Thumbs.db
+*.sw*
+*~
+build/
+bin/
+node_modules/
+nbproject
+bower
+npm-debug.log
 
 # cache files for sublime text
 *.tmlanguage.cache
