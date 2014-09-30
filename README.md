@@ -1,2 +1,5 @@
-packet-php-client
+Packet PHP Library
 =================
+
+## Install with Composer 
+

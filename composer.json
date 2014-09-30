@@ -1,0 +1,25 @@
+{
+    "name": "packethost/packet-php-client",
+    "description": "The Official PHP library for PacketHost",
+    "keywords": [
+        "packet",
+        "packet php"
+    ],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Packethost <dev@packethost.net>",
+            "homepage": "https://packethost.net"
+        }
+    ],
+    "require": {
+        "php": ">=5.4"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "3.7.*",
+        "phpdocumentor/phpdocumentor": "2.*"
+    },
+    "autoload": {
+        "files": ["src/"]
+    }
+}
