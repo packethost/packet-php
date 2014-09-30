@@ -17,3 +17,9 @@ Packet PHP Library
     ],
 
 ```
+
+## Status
+
+API | Documentation    
+--- | -------------  
+[Projects](https://github.com/packethost/apidocs/blob/master/docs/002-projects.apib) | [√](https://github.com/toin0u/DigitalOceanV2#action)  
