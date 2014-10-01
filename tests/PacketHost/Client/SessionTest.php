@@ -13,7 +13,6 @@ class SessionTest extends BaseTest{
 
         $this->assertNotNull($login);
     }
-   
 
     private function getApi(){
 
@@ -23,7 +22,6 @@ class SessionTest extends BaseTest{
 
         return $this->api;
     }
-
 
 }
  
