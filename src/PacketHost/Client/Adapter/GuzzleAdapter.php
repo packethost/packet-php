@@ -14,22 +14,31 @@ class GuzzleAdapter extends BaseAdapter implements AdapterInterface{
     public function get( $resource ){
         
         $response = $this->getClient()->get( $resource );
-        return $response->json();
+        return $this->convertToObjects($response->getBody());
     }
 
     public function post( $resource, $content, array $headers = array()){
 
-        $jsonContent = json_encode($content);
-        return $this->getClient()->post( $resource, $headers, $jsonContent );
+        return $this->convertToObjects( $this->getClient()->post( $resource, ['json' => $content] )->getBody() );
 
     }
 
     public function delete ( $resource ,array $headers = array()){
 
+        $response = $this->getClient()->post( $resource )->getBody() ;
+
+        return $response->getStatusCode() == 204;
     }
 
     public function put ( $resource, $content, array $headers = array() ){
 
+    }
+
+    private function convertToObjects( $data ){
+        
+        $data = json_decode( $data );
+
+        return $data;
     }
 
     private function getClient(){

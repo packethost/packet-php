@@ -3,8 +3,10 @@
 class PacketHostClientTest extends \PHPUnit_Framework_TestCase{
 
     private $adapter = null;
+    private $projectApi = null;
 
     public function __construct(){
+        
     }
 
     protected function setUp(){
@@ -23,27 +25,46 @@ class PacketHostClientTest extends \PHPUnit_Framework_TestCase{
 
         return $this->adapter;
     }
-    public function testGetProjects(){
 
-        $projectApi = new \PacketHost\Client\Api\Project( $this->getAdapter() );
+    private function getProjectApi(){
 
-        $projects = $projectApi->getAll();
+        if ( ! $this->projectApi ){
+            $this->projectApi = new \PacketHost\Client\Api\Project( $this->getAdapter() );
+        }
+
+        return $this->projectApi;
+    }
+
+
+    public function testGetAll(){
+ 
+        $projects = $this->getProjectApi()->getAll();
 
         // A user must have one or more projects
         $this->assertGreaterThan(0, count($projects));
     }
 
-    // public function testAddProject(){
+    public function testCreate(){
+        
+        $project = new \PacketHost\Client\Domain\Project();
+        $project->name = 'New project';
 
-    //     $projectApi = new \PacketHost\Client\Api\Project( $this->getAdapter() );
+        $project = $this->getProjectApi()->create( $project );
+        
+        $this->assertEquals('New project', $project->name);
 
-    //     $project = new \PacketHost\Client\Domain\Project();
-    //     $project->name = 'New project';
+        return $project->id;
+    }
 
-    //     $project = $projectApi->create( $project );
+    /**
+     * Not working yet
+     * @depends testCreate
+     */
+    public function delete( $id ){
 
-    //     // error_log(print_r( $project,true ));
-    //     $this->assertGreaterThan(0, 1);
-    // }
+        $result = $this->getProjectApi()->delete( $id );
+
+        $this->assertEquals($result, true);
+    }
 
 }

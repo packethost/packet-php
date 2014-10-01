@@ -9,13 +9,19 @@ class Project extends BaseApi {
     public function getAll(){
 
         $projects = $this->adapter->get('projects');
-        
+
         return $projects;
     }
 
     public function create( \PacketHost\Client\Domain\Project $project ){
 
         return $this->adapter->post('projects', $project );
+
+    }
+
+     public function delete( $id ){
+
+        return $this->adapter->delete( "projects/{$id}" );
 
     }
 
