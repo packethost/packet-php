@@ -1,13 +1,13 @@
 <?php namespace PacketHost\Client\Adapter;
 
-class GuzzleAdapter implements AdapterInterface{
+class GuzzleAdapter extends BaseAdapter implements AdapterInterface{
 
     const ENDPOINT = "http://localhost:3000/";
 
     private $client = null;
 
-    public function __construct(){
-
+     public function __construct( $authToken, $consumerToken ){
+       parent::__construct( $authToken, $consumerToken );
     }
 
     public function get( $resource ){
@@ -37,7 +37,8 @@ class GuzzleAdapter implements AdapterInterface{
                     'defaults' => [
                     'headers' => [
                         'Accept' => 'application/json',
-                        'X-Auth-Token' => '3567c799bffa8fd622596d4184f7977f' //TODO: We need to remove it from here
+                        'X-Auth-Token' => $this->authToken, //TODO: We need to remove it from here
+                        'X-Consumer-Token' => $this->consumerToken
                     ]
                 ] 
             ] );

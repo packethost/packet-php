@@ -13,5 +13,8 @@ class Project extends BaseApi {
         return $projects;
     }
 
+    public function create( \PacketHost\Client\Domain\Project $project ){
+        
+    }
 
 }
