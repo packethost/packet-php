@@ -7,8 +7,8 @@ class GuzzleAdapter extends BaseAdapter implements AdapterInterface{
 
     private $client = null;
 
-    public function __construct( $authToken, $consumerToken ){
-     parent::__construct( $authToken, $consumerToken );
+    public function __construct( \PacketHost\Client\Adapter\Configuration\ConfigurationInterface $configuration ){
+     parent::__construct( $configuration );
  }
 
  public function get( $resource ){
@@ -50,19 +50,19 @@ private function getClient(){
             'Accept' => 'application/json',
         ];
 
-        if ( $this->authToken ){
-            $headers['X-Auth-Token'] = $this->authToken;
+        if ( $this->configuration->getAuthToken() ){
+            $headers['X-Auth-Token'] = $this->configuration->getAuthToken();
         }
 
-        if ( $this->consumerToken ){
-            $headers['X-Consumer-Token'] = $this->consumerToken;
+        if ( $this->configuration->getConsumerToken() ){
+            $headers['X-Consumer-Token'] = $this->configuration->getConsumerToken();
         }
 
 
             // Create a client with a base URL
         $this->client = new \GuzzleHttp\Client( 
                 [
-                'base_url' => self::ENDPOINT,
+                'base_url' => $this->configuration->getEndPoint(),
                 'defaults' => [
                     'headers' => $headers
                 ] 

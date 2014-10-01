@@ -2,13 +2,10 @@
 
 abstract class BaseAdapter{
 
-    protected $authToken = null;
+    protected $configuration = null;
 
-    protected $consumerToken = null;
-
-    public function __construct( $authToken, $consumerToken ){
-        $this->authToken = $authToken;
-        $this->consumerToken = $consumerToken;
+    public function __construct( \PacketHost\Client\Adapter\Configuration\ConfigurationInterface $configuration ){
+        $this->configuration = $configuration;
     }
 
 }
