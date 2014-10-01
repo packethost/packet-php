@@ -4,10 +4,10 @@ interface AdapterInterface{
 
     function get( $resource );
 
-    function post( $resource, array $headers = array(), $content = '');
+    function post( $resource, $content, array $headers = array());
 
     function delete ( $resource ,array $headers = array()) ;
 
-    function put ( $resource ,array $headers = array(), $content = '') ;
+    function put ( $resource, $content, array $headers = array() ) ;
 
 }

@@ -2,6 +2,7 @@
 
 class GuzzleAdapter extends BaseAdapter implements AdapterInterface{
 
+    //TODO: Change endpoint to be dynamic
     const ENDPOINT = "http://localhost:3000/";
 
     private $client = null;
@@ -11,11 +12,15 @@ class GuzzleAdapter extends BaseAdapter implements AdapterInterface{
     }
 
     public function get( $resource ){
-
-        return $this->getClient()->get( $resource );
+        
+        $response = $this->getClient()->get( $resource );
+        return $response->json();
     }
 
-    public function post( $resource, array $headers = array(), $content = ''){
+    public function post( $resource, $content, array $headers = array()){
+
+        $jsonContent = json_encode($content);
+        return $this->getClient()->post( $resource, $headers, $jsonContent );
 
     }
 
@@ -23,7 +28,7 @@ class GuzzleAdapter extends BaseAdapter implements AdapterInterface{
 
     }
 
-    public function put ( $resource ,array $headers = array(), $content = ''){
+    public function put ( $resource, $content, array $headers = array() ){
 
     }
 
@@ -32,15 +37,17 @@ class GuzzleAdapter extends BaseAdapter implements AdapterInterface{
         if ( ! $this->client ){ 
 
             // Create a client with a base URL
-            $this->client = new \Guzzle\Http\Client(  self::ENDPOINT,
+            $this->client = new \GuzzleHttp\Client( 
                 [
+                    'base_url' => self::ENDPOINT,
                     'defaults' => [
-                    'headers' => [
-                        'Accept' => 'application/json',
-                        'X-Auth-Token' => $this->authToken, //TODO: We need to remove it from here
-                        'X-Consumer-Token' => $this->consumerToken
-                    ]
-                ] 
+                        'headers' => [
+                            'Content-Type'=> 'application/json',
+                            'Accept' => 'application/json',
+                            'X-Auth-Token' => $this->authToken, //TODO: We need to remove it from here
+                            'X-Consumer-Token' => $this->consumerToken
+                        ]
+                    ] 
             ] );
 
         }

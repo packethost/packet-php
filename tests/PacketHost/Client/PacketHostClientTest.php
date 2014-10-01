@@ -18,7 +18,7 @@ class PacketHostClientTest extends \PHPUnit_Framework_TestCase{
     private function getAdapter(){
 
         if ( ! $this->adapter ){
-            $this->adapter = new \PacketHost\Client\Adapter\GuzzleAdapter('3567c799bffa8fd622596d4184f7977f', 'client-php'); 
+            $this->adapter = new \PacketHost\Client\Adapter\GuzzleAdapter('3567c799bffa8fd622596d4184f7977f', '4190f3e7124ceac9c4646aa5b7dad0d562445a5946990238d396e6a354397d60'); 
         }
 
         return $this->adapter;
@@ -29,20 +29,21 @@ class PacketHostClientTest extends \PHPUnit_Framework_TestCase{
 
         $projects = $projectApi->getAll();
 
+        // A user must have one or more projects
         $this->assertGreaterThan(0, count($projects));
     }
 
-    public function testAddProject(){
+    // public function testAddProject(){
 
-        $projectApi = new \PacketHost\Client\Api\Project( $this->getAdapter() );
+    //     $projectApi = new \PacketHost\Client\Api\Project( $this->getAdapter() );
 
-        $project = new \PacketHost\Client\Domain\Project();
-        $project->name = 'New project';
+    //     $project = new \PacketHost\Client\Domain\Project();
+    //     $project->name = 'New project';
 
-        $project = $projectApi->create( $project );
+    //     $project = $projectApi->create( $project );
 
-        error_log(print_r( $project,true ));
-        $this->assertGreaterThan(0, 1);
-    }
+    //     // error_log(print_r( $project,true ));
+    //     $this->assertGreaterThan(0, 1);
+    // }
 
 }

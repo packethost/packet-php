@@ -20,4 +20,5 @@ class FeatureContext implements Context, SnippetAcceptingContext
     public function __construct()
     {
     }
+ 
 }
