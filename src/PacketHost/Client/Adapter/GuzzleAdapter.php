@@ -25,7 +25,7 @@ class GuzzleAdapter extends BaseAdapter implements AdapterInterface{
 
     public function delete ( $resource ,array $headers = array()){
 
-        $response = $this->getClient()->post( $resource )->getBody() ;
+        $response = $this->getClient()->delete( $resource );
 
         return $response->getStatusCode() == 204;
     }

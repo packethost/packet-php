@@ -40,7 +40,7 @@ class PacketHostClientTest extends BaseTest{
      * Not working yet
      * @depends testCreate
      */
-    public function delete( $id ){
+    public function testDelete( $id ){
 
         $result = $this->getProjectApi()->delete( $id );
 
