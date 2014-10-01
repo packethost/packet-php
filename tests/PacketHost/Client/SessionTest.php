@@ -5,11 +5,8 @@ class SessionTest extends BaseTest{
     private $api = null;
 
     public function testLogin(){
-        $session = new \PacketHost\Client\Domain\Session();
-        $session->login = 'emiliano@packethost.net';
-        $session->password = 'test_pass';
 
-        $login = $this->getApi()->login( $session );
+        $login = $this->getApi()->login( new \PacketHost\Client\Domain\Session( 'emiliano@packethost.net', 'test_pass') );
 
         $this->assertNotNull($login);
     }
