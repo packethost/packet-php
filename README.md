@@ -1,6 +1,10 @@
 Packet PHP Library
 =================
 
+####Requirements
+* PHP Curl Extension
+* PHP XSL Extension
+
 ## Install with Composer 
 
 ```
