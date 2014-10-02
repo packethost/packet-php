@@ -13,29 +13,44 @@ abstract class BaseApi implements \PacketHost\Client\Api\Interfaces\ApiInterface
        
     }
 
-    public function getAll(){
+    public function getAll( $include = ''){
 
-        $projects = $this->adapter->get( $this->slug );
-
-        return $projects;
-    }
-
-    public function get( $id ){
-
-        $projects = $this->adapter->get( $this->slug."/{$id}" );
+        $projects = $this->adapter->get( $this->getUrl( '', $include ) );
 
         return $projects;
     }
 
-    public function create( $data ){
+    public function get( $id, $include = ''){
 
-        return $this->adapter->post( $this->slug, $data );
+        $projects = $this->adapter->get( $this->getUrl( $id, $include ) );
+
+        return $projects;
+    }
+
+    private function getUrl( $param = "", $include = "" ){
+
+        $param = $param?"/{$param}":'';
+        $include = $include?"/{$include}":'';
+        return $this->slug.$param.$include;
+    }
+
+    private function getIncludeParam( $include ){
+
+        if ( $include )
+            return "?include={$include}";
+
+        return '';
+    }
+
+    public function create( $data, $include = "" ){
+
+        return $this->adapter->post( $this->getUrl( '', $include ), $data );
 
     }
 
     public function delete( $id ){
 
-        return $this->adapter->delete( $this->slug."/{$id}" );
+        return $this->adapter->delete( $this->getUrl( $id ) );
 
     }
 
