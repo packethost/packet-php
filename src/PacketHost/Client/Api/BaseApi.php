@@ -30,7 +30,7 @@ abstract class BaseApi implements \PacketHost\Client\Api\Interfaces\ApiInterface
     private function getUrl( $param = "", $include = "" ){
 
         $param = $param?"/{$param}":'';
-        $include = $include?"/{$include}":'';
+        $include = $include?"?include={$include}":'';
         return $this->slug.$param.$include;
     }
 
