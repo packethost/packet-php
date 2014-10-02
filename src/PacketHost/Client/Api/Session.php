@@ -10,6 +10,6 @@ class Session extends BaseApi implements \PacketHost\Client\Api\Interfaces\Sessi
 
     public function login ( \PacketHost\Client\Domain\Session $session ){
 
-        return $this->adapter->post('sessions', $session );
+        return $this->adapter->post('sessions?include=user', $session );
     }
 } 
