@@ -4,21 +4,16 @@ class SessionTest extends BaseTest{
 
     private $api = null;
 
-    public function testLogin(){
+    public function __construct(){
 
-        $login = $this->getApi()->login( new \PacketHost\Client\Domain\Session( 'emiliano@packethost.net', 'test_pass') );
 
-        $this->assertNotNull($login);
+        $session = new \PacketHost\Client\Domain\Session( 'emiliano@packethost.net', 'test_pass') ;
+
+        parent::__construct( new \PacketHost\Client\Api\Session( $this->getAdapter() ),$session );
+
+        $this->onlyRun('testCreate, testGet');
     }
 
-    private function getApi(){
-
-        if ( ! $this->api ){
-            $this->api = new \PacketHost\Client\Api\Session( $this->getAdapter() );
-        }
-
-        return $this->api;
-    }
 
 }
  

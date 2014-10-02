@@ -1,9 +1,11 @@
 <?php namespace PacketHost\Client\Domain;
 
-class User{
+class User extends BaseDomain{
     
-    public $id;
     public $token;
     public $username;
+    public $emails = []; // "emails": [ { "address": "melissa@example.com", "default": true },
+    public $first_name; 
+    public $last_name;
 
 }

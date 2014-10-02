@@ -3,12 +3,7 @@
 class User extends \PacketHost\Client\Api\BaseApi implements \PacketHost\Client\Api\Interfaces\UserInterface {
 
     public function __construct( \PacketHost\Client\Adapter\AdapterInterface $adapter ){
-        parent::__construct( $adapter );
+        parent::__construct( $adapter, 'users' );
     }
-
-    public function get( $id ){
-        return $this->adapter->get( "users/{$id}" );
-    }
-
 
 }

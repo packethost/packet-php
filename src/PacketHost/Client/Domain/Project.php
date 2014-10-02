@@ -2,10 +2,7 @@
 
 class Project extends BaseDomain{
 
-    /**
-     * @var GUID
-     */
-    public $id;
+    
 
     /**
      * @var string

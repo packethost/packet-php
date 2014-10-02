@@ -2,6 +2,6 @@
 
 interface SessionInterface {
     
-    function login( \PacketHost\Client\Domain\Session $session );
+    function get( $id );
     
 }
