@@ -13,13 +13,34 @@ class GuzzleAdapter extends BaseAdapter implements AdapterInterface{
 
     public function get( $resource ){
 
-        $response = $this->getClient()->get( $resource );
+        
+        try {
+           $response = $this->getClient()->get( $resource );
+        }  catch (\GuzzleHttp\Exception\ClientException $e) {
+             //TODO: This need to be changed
+            echo print_r($e->getResponse()->json(),true);
+            die();
+        }
+
         return $this->convertToObjects($response->getBody());
     }
 
     public function post( $resource, $content, array $headers = array()){
+        
+        try {
+            $response = $this->getClient()->post( $resource, ['json' => $content] );
 
-        return $this->convertToObjects( $this->getClient()->post( $resource, ['json' => $content] )->getBody() );
+            return $this->convertToObjects( $response->getBody() );   
+
+
+        }  catch ( \GuzzleHttp\Exception\ClientException $e) {
+
+            //TODO: This need to be changed
+            echo print_r($e->getResponse()->json(),true);
+            die();
+        }
+
+         
 
     }
 
@@ -74,3 +95,4 @@ class GuzzleAdapter extends BaseAdapter implements AdapterInterface{
     }
 
 }
+
