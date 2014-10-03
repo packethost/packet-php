@@ -2,10 +2,44 @@
 
 class User extends BaseDomain{
     
+    /**
+     * @var string
+     */
     public $token;
+    
+    /**
+     * @var string
+     */
     public $username;
+    
+    /**
+     * @var string
+     */
     public $emails = []; // "emails": [ { "address": "melissa@example.com", "default": true },
-    public $first_name; 
+    
+    /**
+     * @var string
+     */
+    public $email;
+    
+    /**
+     * @var string
+     */
+    public $first_name;
+    
+    /**
+     * @var string
+     */
     public $last_name;
+    
+    /**
+     * @var string
+     */
+    public $full_name;
+    
+    /**
+     * @var string
+     */
+    public $display_name;
 
 }

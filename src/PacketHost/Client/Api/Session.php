@@ -4,7 +4,7 @@ class Session extends BaseApi {
 
     public function __construct( \PacketHost\Client\Adapter\AdapterInterface $adapter ){
 
-        parent::__construct( $adapter, 'sessions' );
+        parent::__construct( $adapter, 'sessions', \PacketHost\Client\Domain\Session::class );
         
     }
     

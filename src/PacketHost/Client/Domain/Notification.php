@@ -17,20 +17,4 @@ class Notification extends BaseDomain{
      */
     public $user;
 
-    /**
-     * @var string
-     */
-    public $created_at;
-
-     /**
-     * @var string
-     */
-    public $updated_at;
-
-
-    public function __construct( ){
-        parent::__construct();
-    }
-
-
 }

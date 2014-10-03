@@ -3,7 +3,7 @@
 class User extends \PacketHost\Client\Api\BaseApi  {
 
     public function __construct( \PacketHost\Client\Adapter\AdapterInterface $adapter ){
-        parent::__construct( $adapter, 'users' );
+        parent::__construct( $adapter, 'users', \PacketHost\Client\Domain\User::class );
     }
 
 }

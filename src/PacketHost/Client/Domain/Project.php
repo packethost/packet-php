@@ -10,9 +10,9 @@ class Project extends BaseDomain{
     public $name;
 
 
-    public function __construct(){
-        parent::__construct();
-    }
+    public $members;
+    public $memberships;
+    public $invitations;
 
 
 }

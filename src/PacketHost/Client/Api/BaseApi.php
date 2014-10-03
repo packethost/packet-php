@@ -5,26 +5,35 @@ abstract class BaseApi implements \PacketHost\Client\Api\Interfaces\ApiInterface
     private $adapter;
 
     private $slug;
+    
+    private $domain;
 
-    public function __construct( \PacketHost\Client\Adapter\AdapterInterface $adapter, $slug ){
+    public function __construct( \PacketHost\Client\Adapter\AdapterInterface $adapter, $slug , $domain){
         
         $this->adapter = $adapter;
         $this->slug = $slug;
+        $this->domain = $domain;
        
     }
 
     public function getAll( $include = ''){
 
-        $projects = $this->adapter->get( $this->getUrl( '', $include ) );
-
-        return $projects;
+        $apiCollection = $this->adapter->get( $this->getUrl( '', $include ) );
+        //dd($apiCollection);
+        $class=$this->domain;
+        return array_map(
+            function ($apiObject) use( $class ) {
+                return new $class($apiObject);
+            },
+            $apiCollection->{$this->slug}
+        );
     }
 
     public function get( $id, $include = ''){
 
-        $projects = $this->adapter->get( $this->getUrl( $id, $include ) );
+        $apiObject = $this->adapter->get( $this->getUrl( $id, $include ) );
 
-        return $projects;
+        return new $this->domain($apiObject);
     }
 
     private function getUrl( $param = "", $include = "" ){

@@ -7,7 +7,7 @@ class SessionTest extends BaseTest{
     public function __construct(){
 
 
-        $session = new \PacketHost\Client\Domain\Session( 'emiliano@packethost.net', 'test_pass') ;
+        $session = new \PacketHost\Client\Domain\Session( ['login'=> 'emiliano@packethost.net', 'password' =>'test_pass']) ;
 
         parent::__construct( new \PacketHost\Client\Api\Session( $this->getAdapter() ),$session );
 
