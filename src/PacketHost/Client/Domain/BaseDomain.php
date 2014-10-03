@@ -16,12 +16,12 @@ abstract class BaseDomain
     /**
      * @var string
      */
-    public $created_at;
+    public $createdAt;
     
     /**
      * @var string
      */
-    public $updated_at;
+    public $updatedAt;
     
     /**
      * @param \stdClass|array $parameters
@@ -68,6 +68,8 @@ abstract class BaseDomain
     {
         foreach ($parameters as $property => $value)
         {
+            $property = $this->toCamelCase($property);
+            
             if( method_exists( get_called_class(), 'set' . $property ) )
             {
                 // To complatible with php =< 5.4
@@ -78,5 +80,15 @@ abstract class BaseDomain
                 $this->$property = $value;
             }
         }
+    }
+    
+    private function toCamelCase($property){
+        return lcfirst(preg_replace_callback(
+            '/(^|_)([a-z])/',
+            function ($match) {
+                return strtoupper($match[2]);
+            },
+            $property
+        ));
     }
 }
