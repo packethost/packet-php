@@ -16,10 +16,10 @@ abstract class BaseApi implements \PacketHost\Client\Api\Interfaces\ApiInterface
        
     }
 
-    public function getAll( $include = ''){
+    public function getAll( $options = ""){
 
-        $apiCollection = $this->adapter->get( $this->getUrl( '', $include ) );
-        //dd($apiCollection);
+        $apiCollection = $this->adapter->get( $this->getUrl( '', $options ) );
+         
         $class=$this->domain;
         return array_map(
             function ($apiObject) use( $class ) {
@@ -29,31 +29,29 @@ abstract class BaseApi implements \PacketHost\Client\Api\Interfaces\ApiInterface
         );
     }
 
-    public function get( $id, $include = ''){
+    public function get( $id, $options = ""){
 
-        $apiObject = $this->adapter->get( $this->getUrl( $id, $include ) );
+        $apiObject = $this->adapter->get( $this->getUrl( $id, $options ) );
 
         return new $this->domain($apiObject);
     }
 
-    private function getUrl( $param = "", $include = "" ){
+    private function getUrl( $param = "", $options = ""){
 
         $param = $param?"/{$param}":'';
-        $include = $include?"?include={$include}":'';
-        return $this->slug.$param.$include;
+        $options = $options?"?{$options}":'';
+        return $this->slug.$param.$options;
     }
 
-    private function getIncludeParam( $include ){
+    private function validateOptions( $options = ""){
 
-        if ( $include )
-            return "?include={$include}";
-
-        return '';
+        //TODO: We need to validate the options we are sending to the api
+        return $options;
     }
 
-    public function create( $data, $include = "" ){
+    public function create( $data, $options = ""){
 
-        return $this->adapter->post( $this->getUrl( '', $include ), $data );
+        return $this->adapter->post( $this->getUrl( '', $options ), $data );
 
     }
 

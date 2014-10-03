@@ -2,11 +2,11 @@
 
 interface ApiInterface {
     
-    public function getAll();
+    public function getAll( $options = "");
 
-    public function get( $id );
+    public function get( $id, $options = "");
 
-    public function create( $data );
+    public function create( $data, $options = "");
 
     public function delete( $id );
     
