@@ -3,7 +3,7 @@
 class TestConfiguration implements \PacketHost\Client\Adapter\Configuration\ConfigurationInterface {
 
     public function getAuthToken(){
-        return "3567c799bffa8fd622596d4184f7977f";
+        return "c159ea6e21c061ccace39990a45e8e83";
     }
 
     public function getConsumerToken(){
