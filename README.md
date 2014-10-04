@@ -7,7 +7,7 @@ Packet PHP Library
 
 ## Install with Composer 
 
-```
+```php
  "require": {
         "packethost/packet-php-client": "dev-develop"
     },
@@ -22,8 +22,28 @@ Packet PHP Library
 
 ```
 
-## Status
+## Using the API
 
-API | Documentation    
---- | -------------  
-[Projects](https://github.com/packethost/apidocs/blob/master/docs/002-projects.apib) | [√](https://github.com/toin0u/DigitalOceanV2#action)  
+
+```php
+
+
+
+```
+
+## Running the tests
+
+In order to run the tests you need to create a file called "config.json" in your tests dir, with the following content
+
+```javascript
+
+{
+    "authToken":"xxxx",
+    "consumerToken":"xxxx",
+    "endPoint":"http://localhost:3000/"
+}
+
+
+```
+
+

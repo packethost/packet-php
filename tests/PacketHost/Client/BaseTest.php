@@ -73,10 +73,15 @@ abstract class BaseTest extends \PHPUnit_Framework_TestCase{
     protected function getAdapter(){
 
         if ( ! $this->adapter ){
-            $this->adapter = new \PacketHost\Client\Adapter\GuzzleAdapter( new \PacketHost\Client\Adapter\Configuration\TestConfiguration() ); 
+            $this->adapter = new \PacketHost\Client\Adapter\GuzzleAdapter( new \PacketHost\Client\Adapter\Configuration\JsonConfiguration( $this->getFileConfiguration()) ); 
         }
 
         return $this->adapter;
+    }
+
+    private function getFileConfiguration(){
+        $path = str_replace('PacketHost/Client','',__DIR__)."config.json";
+        return $path;
     }
 
 }
