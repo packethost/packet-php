@@ -26,7 +26,7 @@ abstract class BaseDomain
     /**
      * @param \stdClass|array $parameters
      */
-    public function __construct( $parameters )
+    public function __construct( $parameters = [] )
     {
         $this->convert( $parameters );
     }
@@ -73,7 +73,7 @@ abstract class BaseDomain
             if( method_exists( get_called_class(), 'set' . $property ) )
             {
                 // To complatible with php =< 5.4
-                $property = 'set' . $property;
+                //$property = 'set' . $property;
                 $this->$property( $value );
             } else
             {
