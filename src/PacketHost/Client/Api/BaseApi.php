@@ -1,6 +1,6 @@
 <?php namespace PacketHost\Client\Api;
 
-abstract class BaseApi implements \PacketHost\Client\Api\Interfaces\ApiInterface{
+abstract class BaseApi {
 
     private $adapter;
 
@@ -8,39 +8,49 @@ abstract class BaseApi implements \PacketHost\Client\Api\Interfaces\ApiInterface
     
     private $domain;
 
-    public function __construct( \PacketHost\Client\Adapter\AdapterInterface $adapter, $slug , $domain){
+    private $collectionSlug;
+
+    public function __construct( \PacketHost\Client\Adapter\AdapterInterface $adapter, $slug, $domain, $collectionSlug){
         
         $this->adapter = $adapter;
         $this->slug = $slug;
         $this->domain = $domain;
+        $this->collectionSlug = $collectionSlug;
        
     }
 
-    public function getAll( $options = ""){
+    protected function getEntities( $params, $options = ""){
 
-        $apiCollection = $this->adapter->get( $this->getUrl( '', $options ) );
+        $apiCollection = $this->adapter->get( $this->getUrl( $params, $options ) );
          
         $class=$this->domain;
         return array_map(
             function ($apiObject) use( $class ) {
                 return new $class($apiObject);
             },
-            $apiCollection->{$this->slug}
+            $apiCollection->{$this->collectionSlug}
         );
     }
 
-    public function get( $id, $options = ""){
+    public function getEntity( $id, $options = ""){
 
         $apiObject = $this->adapter->get( $this->getUrl( $id, $options ) );
 
         return new $this->domain($apiObject);
     }
 
-    private function getUrl( $param = "", $options = ""){
+    private function getUrl( $params = [], $options = ""){
 
-        $param = $param?"/{$param}":'';
+        $compiledSlug = $this->slug;
+
+        foreach( $params as $key => $value ){
+
+            $compiledSlug = str_replace( ":{$key}",$value, $compiledSlug);
+
+        }
+         
         $options = $options?"?{$options}":'';
-        return $this->slug.$param.$options;
+        return $compiledSlug.$options;
     }
 
     private function validateOptions( $options = ""){
@@ -49,15 +59,21 @@ abstract class BaseApi implements \PacketHost\Client\Api\Interfaces\ApiInterface
         return $options;
     }
 
-    public function create( $data, $options = ""){
+    public function createEntity( $params, $data, $options = ""){
 
-        return $this->adapter->post( $this->getUrl( '', $options ), $data );
+        return $this->adapter->post( $this->getUrl( $params, $options ), $data );
 
     }
 
-    public function delete( $id ){
+    public function deleteEntity( $params, $options ){
 
         return $this->adapter->delete( $this->getUrl( $id ) );
+
+    }
+
+    public function updateEntity( $params, $data, $options = "" ){
+
+        return $this->adapter->post( $this->getUrl( $params, $options ), $data  );
 
     }
 
