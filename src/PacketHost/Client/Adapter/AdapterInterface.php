@@ -10,4 +10,6 @@ interface AdapterInterface{
 
     function put ( $resource, $content, array $headers = array() ) ;
 
+    function patch ( $resource, $content, array $headers = array() ) ;
+
 }

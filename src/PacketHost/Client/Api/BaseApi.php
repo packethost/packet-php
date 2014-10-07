@@ -73,7 +73,7 @@ abstract class BaseApi {
 
     public function updateEntity( $params, $data, $options = "" ){
 
-        return $this->adapter->post( $this->getUrl( $params, $options ), $data  );
+        return $this->adapter->patch( $this->getUrl( $params, $options ), $data  );
 
     }
 

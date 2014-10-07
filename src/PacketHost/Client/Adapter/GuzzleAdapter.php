@@ -45,9 +45,30 @@ class GuzzleAdapter extends BaseAdapter implements AdapterInterface{
             die();
         }
 
-         
+    }
+
+     public function patch( $resource, $content, array $headers = array()){
+        
+        try {
+            //Remove null properties from domain objetcs
+            if($content instanceof \PacketHost\Client\Domain\BaseDomain){
+                $content = array_filter((array) $content);
+            }
+            
+            $response = $this->getClient()->patch( $resource, ['json' => $content] );
+            
+            return $this->convertToObjects( $response->getBody() );   
+
+
+        }  catch ( \GuzzleHttp\Exception\ClientException $e) {
+            //dd($e->getRequest());
+            //TODO: This need to be changed
+            echo print_r($e->getResponse()->json(),true);
+            die();
+        }
 
     }
+
 
     public function delete ( $resource ,array $headers = array()){
 
