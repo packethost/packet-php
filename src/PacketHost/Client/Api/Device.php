@@ -8,7 +8,7 @@ class Device extends BaseApi implements \PacketHost\Client\Api\Interfaces\Device
         parent::__construct( $adapter, "projects/:projectId/devices/:id", \PacketHost\Client\Domain\Project::class, 'devices');
     }
 
-    public function getAll( $projectID, $options = ""){
+    public function getAll( $projectId, $options = ""){
 
         return $this->getEntities( $this->getParams($projectId), $options);
     }
@@ -21,12 +21,12 @@ class Device extends BaseApi implements \PacketHost\Client\Api\Interfaces\Device
 
     public function create( $projectId, $data, $options = ""){
 
-        return $this->createEntity( $this->getParams( $projectId ), $options);
+        return $this->createEntity( $this->getParams( $projectId ), $data, $options);
     }
 
     private function getParams($projectId, $id = ""){
         return [
-             self::ProjectID => $projectID,
+             self::ProjectID => $projectId,
             "id" => $id
         ];
     }
