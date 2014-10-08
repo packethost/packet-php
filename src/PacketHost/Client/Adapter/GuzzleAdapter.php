@@ -11,18 +11,23 @@ class GuzzleAdapter extends BaseAdapter implements AdapterInterface{
        parent::__construct( $configuration );
     }
 
+    private function handleResponse($response){
+        
+        \PacketHost\Client\Exceptions\ExceptionFactory::create($response->getStatusCode(), $response->json(['object'=>true]));
+        
+    }
+    
     public function get( $resource ){
 
-        
         try {
            $response = $this->getClient()->get( $resource );
-        }  catch (\GuzzleHttp\Exception\ClientException $e) {
-             //TODO: This need to be changed
-            echo print_r($e->getResponse()->json(),true);
-            die();
+           
+           return $this->convertToObjects( $response->getBody() );
+        
+        }  catch (\GuzzleHttp\Exception\BadResponseException $e) {
+            
+            $this->handleResponse($e->getResponse());
         }
-
-        return $this->convertToObjects($response->getBody());
     }
 
     public function post( $resource, $content, array $headers = array()){
@@ -37,12 +42,9 @@ class GuzzleAdapter extends BaseAdapter implements AdapterInterface{
             
             return $this->convertToObjects( $response->getBody() );   
 
-
-        }  catch ( \GuzzleHttp\Exception\ClientException $e) {
-            //dd($e->getRequest());
-            //TODO: This need to be changed
-            echo print_r($e->getResponse()->json(),true);
-            die();
+        }  catch ( \GuzzleHttp\Exception\BadResponseException $e) {
+           
+            $this->handleResponse($e->getResponse());
         }
 
     }
@@ -60,11 +62,9 @@ class GuzzleAdapter extends BaseAdapter implements AdapterInterface{
             return $this->convertToObjects( $response->getBody() );   
 
 
-        }  catch ( \GuzzleHttp\Exception\ClientException $e) {
-            //dd($e->getRequest());
-            //TODO: This need to be changed
-            echo print_r($e->getResponse()->json(),true);
-            die();
+        }  catch ( \GuzzleHttp\Exception\BadResponseException $e) {
+            
+            $this->handleResponse($e->getResponse());
         }
 
     }
@@ -72,9 +72,15 @@ class GuzzleAdapter extends BaseAdapter implements AdapterInterface{
 
     public function delete ( $resource ,array $headers = array()){
 
-        $response = $this->getClient()->delete( $resource );
+        try {
+            $response = $this->getClient()->delete( $resource );
 
-        return $response->getStatusCode() == 204;
+            return $response->getStatusCode() == 204;
+            
+        }  catch ( \GuzzleHttp\Exception\BadResponseException $e) {
+            
+            $this->handleResponse($e->getResponse());
+        }
     }
 
     public function put ( $resource, $content, array $headers = array() ){
