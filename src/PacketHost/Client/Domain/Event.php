@@ -5,17 +5,26 @@ class Event extends BaseDomain{
     /**
      * @var string
      */
-    public $message; 
+    public $body;
 
-     /**
+    /**
      * @var string
      */
     public $type; 
 
-     /**
+    /**
      * @var string
      */
     public $createdAt;
 
+    /**
+     * @var string
+     */
+    public $interpolated;
+
+    /**
+     * @var string
+     */
+    public $relationships;
 
 }
