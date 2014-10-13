@@ -21,7 +21,7 @@ abstract class BaseApi {
 
     protected function getEntities( $params, $options = ""){
 
-        $apiCollection = $this->adapter->get( $this->getUrl( $params, $options ) );
+        $apiCollection = $this->adapter->get( $this->getUrl( $params, $options ), $this->getHeader( $options ) );
          
         $class=$this->domain;
         return array_map(
@@ -32,9 +32,13 @@ abstract class BaseApi {
         );
     }
 
+    private function getHeader( $options ){
+        return isset( $options['header']) ? $options['header']: [];
+    }
+
     public function getEntity( $id, $options = ""){
 
-        $apiObject = $this->adapter->get( $this->getUrl( $id, $options ) );
+        $apiObject = $this->adapter->get( $this->getUrl( $id, $options ), $this->getHeader( $options ) );
 
         return new $this->domain($apiObject);
     }
@@ -61,19 +65,19 @@ abstract class BaseApi {
 
     public function createEntity( $params, $data, $options = ""){
 
-        return $this->adapter->post( $this->getUrl( $params, $options ), $data );
+        return $this->adapter->post( $this->getUrl( $params, $options ), $data, $this->getHeader( $options ));
 
     }
 
     public function deleteEntity( $params, $options ){
 
-        return $this->adapter->delete( $this->getUrl( $id ) );
+        return $this->adapter->delete( $this->getUrl( $id ), $this->getHeader( $options ) );
 
     }
 
     public function updateEntity( $params, $data, $options = "" ){
 
-        return $this->adapter->patch( $this->getUrl( $params, $options ), $data  );
+        return $this->adapter->patch( $this->getUrl( $params, $options ), $data, $this->getHeader( $options )  );
 
     }
 

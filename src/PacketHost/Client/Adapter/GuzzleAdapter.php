@@ -80,7 +80,6 @@ class GuzzleAdapter extends BaseAdapter implements AdapterInterface
         return $this->execute( self::POST, $resource, $content, $headers );
     }
 
-
     public function patch($resource, $content, array $headers = array())
     {
         return $this->execute( self::PATCH, $resource, $content, $headers );
@@ -88,9 +87,7 @@ class GuzzleAdapter extends BaseAdapter implements AdapterInterface
 
     public function delete($resource, array $headers = array())
     {
-
         return $this->execute( self::DELETE, $resource, null, $headers );
-        
     }
 
     public function put($resource, $content, array $headers = array())
@@ -100,7 +97,6 @@ class GuzzleAdapter extends BaseAdapter implements AdapterInterface
 
     private function convertToObjects($data)
     {
-
         $data = json_decode($data);
 
         return $data;
