@@ -19,7 +19,7 @@ abstract class BaseApi {
        
     }
 
-    protected function getEntities( $params, $options = ""){
+    protected function getEntities( $params, $options = []){
 
         $apiCollection = $this->adapter->get( $this->getUrl( $params, $options ), $this->getHeader( $options ) );
          
@@ -43,9 +43,10 @@ abstract class BaseApi {
         return new $this->domain($apiObject);
     }
 
-    private function getUrl( $params = [], $options = ""){
+    private function getUrl( $params = [], $options = []){
 
         $compiledSlug = $this->slug;
+        $queryParams =  isset ( $options['queryParams'] )?"?".$options['queryParams']:'';
 
         foreach( $params as $key => $value ){
 
@@ -53,17 +54,16 @@ abstract class BaseApi {
 
         }
          
-        $options = $options?"?{$options}":'';
-        return $compiledSlug.$options;
+        return $compiledSlug.$queryParams;
     }
 
-    private function validateOptions( $options = ""){
+    private function validateOptions( $options ){
 
         //TODO: We need to validate the options we are sending to the api
         return $options;
     }
 
-    public function createEntity( $params, $data, $options = ""){
+    public function createEntity( $params, $data, $options = []){
 
         return $this->adapter->post( $this->getUrl( $params, $options ), $data, $this->getHeader( $options ));
 
@@ -75,7 +75,7 @@ abstract class BaseApi {
 
     }
 
-    public function updateEntity( $params, $data, $options = "" ){
+    public function updateEntity( $params, $data, $options = [] ){
 
         return $this->adapter->patch( $this->getUrl( $params, $options ), $data, $this->getHeader( $options )  );
 
