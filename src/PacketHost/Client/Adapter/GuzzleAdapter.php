@@ -4,14 +4,25 @@ namespace PacketHost\Client\Adapter;
 
 class GuzzleAdapter extends BaseAdapter implements AdapterInterface
 {
-    //TODO: Change endpoint to be dynamic
-    const ENDPOINT = "http://localhost:3000/";
 
+    const GET   = "get";
+    const POST  = "post";
+    const PUT   = "put";
+    const PATCH = "patch";
+    const DELETE= "delete";
+
+    private $validHttpMethods = [];
     private $client = null;
 
     public function __construct(\PacketHost\Client\Adapter\Configuration\ConfigurationInterface $configuration)
     {
         parent::__construct($configuration);
+
+        $this->validHttpMethods = [self::GET, self::POST, self::PUT, self::PATCH, self::DELETE];
+    }
+
+    private function isValidMethod( $method ){
+        return in_array($method,$this->validHttpMethods);
     }
 
     private function handleResponse($response)
@@ -26,13 +37,27 @@ class GuzzleAdapter extends BaseAdapter implements AdapterInterface
         \PacketHost\Client\Exceptions\RequestExceptions\RequestExceptionFactory::create($request);
     }
 
-    public function get($resource)
-    {
+    private function execute( $type, $resource, $content, $headers ){
+
+        $settings = ['headers' => $headers];
+
+        // $settings['debug'] = true;
+
+        //Remove null properties from domain objetcs
+        if ($content instanceof \PacketHost\Client\Domain\BaseDomain) {
+            $content = $content->toArray();
+
+            $settings['json'] = $content;
+        }
 
         try {
-            $response = $this->getClient()->get($resource);
 
-            return $this->convertToObjects($response->getBody());
+            if ( $this->isValidMethod($type )){
+                $response = $this->getClient()->{$type}($resource, $settings);
+                return $this->convertToObjects($response->getBody());
+            }
+
+            throw new \Exception("Method not found: {$type}");
             
         } catch (\GuzzleHttp\Exception\BadResponseException $e) {
             
@@ -43,78 +68,34 @@ class GuzzleAdapter extends BaseAdapter implements AdapterInterface
             $this->handleRequest($e->getRequest());
             
         }
+
+    }
+    public function get($resource, array $headers = array())
+    {
+        return $this->execute( self::GET, $resource, null, $headers );
     }
 
     public function post($resource, $content, array $headers = array())
     {
-
-        try {
-            //Remove null properties from domain objetcs
-            if ($content instanceof \PacketHost\Client\Domain\BaseDomain) {
-                $content = array_filter((array) $content);
-            }
-
-            $response = $this->getClient()->post($resource, ['json' => $content]);
-
-            return $this->convertToObjects($response->getBody());
-            
-        } catch (\GuzzleHttp\Exception\BadResponseException $e) {
-            
-            $this->handleResponse($e->getResponse());
-            
-        } catch (\GuzzleHttp\Exception\RequestException $e) {
-            
-            $this->handleRequest($e->getRequest());
-            
-        }
+        return $this->execute( self::POST, $resource, $content, $headers );
     }
+
 
     public function patch($resource, $content, array $headers = array())
     {
-
-        try {
-            //Remove null properties from domain objetcs
-            if ($content instanceof \PacketHost\Client\Domain\BaseDomain) {
-                $content = array_filter((array) $content);
-            }
-
-            $response = $this->getClient()->patch($resource, ['json' => $content]);
-
-            return $this->convertToObjects($response->getBody());
-            
-        } catch (\GuzzleHttp\Exception\BadResponseException $e) {
-            
-            $this->handleResponse($e->getResponse());
-            
-        } catch (\GuzzleHttp\Exception\RequestException $e) {
-            
-            $this->handleRequest($e->getRequest());
-            
-        }
+        return $this->execute( self::PATCH, $resource, $content, $headers );
     }
 
     public function delete($resource, array $headers = array())
     {
 
-        try {
-            $response = $this->getClient()->delete($resource);
-
-            return $response->getStatusCode() == 204;
-            
-        } catch (\GuzzleHttp\Exception\BadResponseException $e) {
-            
-            $this->handleResponse($e->getResponse());
-            
-        } catch (\GuzzleHttp\Exception\RequestException $e) {
-            
-            $this->handleRequest($e->getRequest());
-            
-        }
+        return $this->execute( self::DELETE, $resource, null, $headers );
+        
     }
 
     public function put($resource, $content, array $headers = array())
     {
-        
+        return $this->execute( self::PUT, $resource, $content, $headers );
     }
 
     private function convertToObjects($data)
