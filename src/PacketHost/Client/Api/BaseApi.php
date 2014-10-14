@@ -53,7 +53,7 @@ abstract class BaseApi {
             $compiledSlug = str_replace( ":{$key}",$value, $compiledSlug);
 
         }
-         
+        
         return $compiledSlug.$queryParams;
     }
 
