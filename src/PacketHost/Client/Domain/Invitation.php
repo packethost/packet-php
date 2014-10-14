@@ -5,7 +5,7 @@ class Invitation extends BaseDomain{
     /**
      * @var string
      */
-    public $email;
+    public $invitee;
 
     /**
      * @var array
@@ -17,6 +17,9 @@ class Invitation extends BaseDomain{
      */
     public $project;
 
+    
+    public $invitedBy;
+    
     public function __construct(){
         parent::__construct();
     }

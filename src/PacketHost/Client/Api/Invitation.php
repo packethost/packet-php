@@ -8,6 +8,11 @@ class Invitation extends BaseApi implements \PacketHost\Client\Api\Interfaces\In
         parent::__construct( $adapter, "projects/:projectId/invitations/:id", \PacketHost\Client\Domain\Project::class, 'invitations');
     }
     
+    public function getAll( $projectId, $options = "")
+    {
+        return $this->getEntities( $this->getParams( $projectId), $options );
+    }
+    
     public function get( $projectId, $id, $options = ""){
 
         return $this->getEntity( $this->getParams( $projectId, $id ), $options );
