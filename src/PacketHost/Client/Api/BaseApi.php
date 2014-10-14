@@ -77,8 +77,9 @@ abstract class BaseApi {
 
     public function updateEntity( $params, $data, $options = [] ){
 
-        return $this->adapter->patch( $this->getUrl( $params, $options ), $data, $this->getHeader( $options )  );
+        $updatedObject = $this->adapter->patch( $this->getUrl( $params, $options ), $data, $this->getHeader( $options )  );
 
+        return new $this->domain($updatedObject);
     }
 
     protected function getAdapter(){

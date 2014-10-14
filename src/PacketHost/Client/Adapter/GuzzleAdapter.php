@@ -40,15 +40,19 @@ class GuzzleAdapter extends BaseAdapter implements AdapterInterface
     private function execute( $type, $resource, $content, $headers ){
 
         $settings = ['headers' => $headers];
+        $data  = [];
 
         // $settings['debug'] = true;
 
         //Remove null properties from domain objetcs
         if ($content instanceof \PacketHost\Client\Domain\BaseDomain) {
-            $content = $content->toArray();
-
-            $settings['json'] = $content;
+            $data = $content->toArray();
         }
+        else{
+            $data = $content;
+        }
+
+        $settings['json'] = $data;
 
         try {
 
