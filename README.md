@@ -46,4 +46,12 @@ In order to run the tests you need to create a file called "config.json" in your
 
 ```
 
+## Sending query string parameters and header information 
+
+```php
+[
+    'queryParams'=>'include=user'
+    'header'=>'SomeValue: xxxx'
+]
+```
 

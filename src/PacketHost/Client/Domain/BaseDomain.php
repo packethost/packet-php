@@ -91,4 +91,11 @@ abstract class BaseDomain
             $property
         ));
     }
+
+    public function toArray(){
+        //Remove null properties from domain objetcs
+        $props = array_filter((array) $this);
+
+        return $props;
+    }
 }
