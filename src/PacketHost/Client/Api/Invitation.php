@@ -23,7 +23,7 @@ class Invitation extends BaseApi implements \PacketHost\Client\Api\Interfaces\In
         return $this->createEntity( $this->getParams( $projectId ), $data, $options);
     }
 
-    public function delete( $projectId, $id, $options ){
+    public function delete( $projectId, $id, $options = "" ){
 
         return $this->deleteEntity( $this->getParams( $projectId, $id ), $options );
     }
