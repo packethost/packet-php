@@ -42,4 +42,9 @@ class User extends BaseDomain{
      */
     public $displayName;
 
+    /**
+     * @var string
+     */
+    public $password;
+
 }

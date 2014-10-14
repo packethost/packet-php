@@ -19,7 +19,7 @@ class User extends \PacketHost\Client\Api\BaseApi  implements \PacketHost\Client
 
     public function create( $data, $options = "" ){
 
-        return $this->createEntity( [], $data, $options );
+        return $this->createEntity( $this->getParams(), $data, $options );
     }
 
     public function getAll( $options = ""){
