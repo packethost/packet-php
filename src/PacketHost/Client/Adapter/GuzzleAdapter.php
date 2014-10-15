@@ -39,7 +39,8 @@ class GuzzleAdapter extends BaseAdapter implements AdapterInterface
 
     private function execute( $type, $resource, $content, $headers ){
 
-        $settings = ['headers' => $headers];
+        $settings = count($headers)>0?$headers:[];
+
         $data  = [];
 
         // $settings['debug'] = true;
