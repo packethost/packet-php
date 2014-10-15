@@ -46,5 +46,31 @@ class User extends BaseDomain{
      * @var string
      */
     public $password;
+    
+    /**
+     * @var string
+     */
+    public $twitter;
+    
+    /**
+     * @var string
+     */
+    public $facebook;
+    
+    /**
+     * @var string
+     */
+    public $linkedin;
+    
+    /**
+     * @var string
+     */
+    public $timezone;
+    
+    /**
+     * @var 
+     */
+    public $twoFactorAuth;
+    
 
 }
