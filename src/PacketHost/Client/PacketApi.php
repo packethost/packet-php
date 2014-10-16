@@ -55,6 +55,13 @@ class PacketApi{
     public function user(){
         return $this->factory(\PacketHost\Client\Api\User::class);
     }
+    
+    /**
+     * @return \PacketHost\Client\Api\PaymentMethod
+     */
+    public function paymentMethod(){
+        return $this->factory(\PacketHost\Client\Api\PaymentMethod::class);
+    }
 
     /**
      * @return \PacketHost\Client\Api\ApiInterface
