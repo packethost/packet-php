@@ -36,7 +36,7 @@ abstract class BaseApi {
         return isset( $options['header']) ? $options['header']: [];
     }
 
-    public function getEntity( $id, $options = ""){
+    public function getEntity( $id, $options = [] ){
 
         $apiObject = $this->adapter->get( $this->getUrl( $id, $options ), $this->getHeader( $options ) );
 
