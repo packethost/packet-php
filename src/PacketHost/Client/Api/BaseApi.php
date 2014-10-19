@@ -48,12 +48,13 @@ abstract class BaseApi {
         $compiledSlug = $this->slug;
         $queryParams =  isset ( $options['queryParams'] )?"?".$options['queryParams']:'';
 
-        foreach( $params as $key => $value ){
 
+        foreach( $params as $key => $value ){
             $compiledSlug = str_replace( ":{$key}",$value, $compiledSlug);
 
         }
-        
+  
+
         return $compiledSlug.$queryParams;
     }
 

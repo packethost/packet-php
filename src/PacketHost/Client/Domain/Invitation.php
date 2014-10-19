@@ -20,8 +20,4 @@ class Invitation extends BaseDomain{
     
     public $invitedBy;
     
-    public function __construct(){
-        parent::__construct();
-    }
-
 }
