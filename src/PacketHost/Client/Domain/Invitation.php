@@ -20,4 +20,5 @@ class Invitation extends BaseDomain{
     
     public $invitedBy;
     
+    public $user;
 }

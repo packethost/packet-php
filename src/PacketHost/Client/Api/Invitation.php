@@ -4,7 +4,7 @@ class Invitation extends BaseApi implements \PacketHost\Client\Api\Interfaces\In
 
     
     public function __construct( \PacketHost\Client\Adapter\AdapterInterface $adapter ){
-        parent::__construct( $adapter, "invitations/:id", \PacketHost\Client\Domain\Project::class, 'invitations');
+        parent::__construct( $adapter, "invitations/:id", \PacketHost\Client\Domain\Invitation::class, 'invitations');
     }
     
     public function getAll( $options = "")
