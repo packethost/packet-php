@@ -126,6 +126,10 @@ class GuzzleAdapter extends BaseAdapter implements AdapterInterface
                 $headers['X-Consumer-Token'] = $this->configuration->getConsumerToken();
             }
 
+            //Add default header values
+            if ( $this->configuration->getHeader()){
+                $headers[] = $this->configuration->getHeaders();
+            }
 
             // Create a client with a base URL
             $this->client = new \GuzzleHttp\Client(
