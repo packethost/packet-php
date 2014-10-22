@@ -7,4 +7,6 @@ interface ConfigurationInterface{
     function getConsumerToken();
 
     function getEndPoint();
+
+    function getHeaders();
 }

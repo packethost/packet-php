@@ -127,7 +127,7 @@ class GuzzleAdapter extends BaseAdapter implements AdapterInterface
             }
 
             //Add default header values
-            if ( $this->configuration->getHeader()){
+            if ( $this->configuration->getHeaders()){
                 $headers[] = $this->configuration->getHeaders();
             }
 

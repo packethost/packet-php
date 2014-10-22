@@ -72,5 +72,9 @@ class User extends BaseDomain{
      */
     public $twoFactorAuth;
     
+    /**
+    * @var boolean
+    */
+    public $staff;
 
 }
