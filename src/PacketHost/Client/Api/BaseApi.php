@@ -72,7 +72,7 @@ abstract class BaseApi {
 
     public function deleteEntity( $params, $options ){
 
-        return $this->adapter->delete( $this->getUrl( $id ), $this->getHeader( $options ) );
+        return $this->adapter->delete( $this->getUrl( $params, $options ), $this->getHeader( $options ) );
 
     }
 
