@@ -62,6 +62,13 @@ class PacketApi{
     public function paymentMethod(){
         return $this->factory(\PacketHost\Client\Api\PaymentMethod::class);
     }
+    
+    /**
+     * @return \PacketHost\Client\Api\Membership
+     */
+    public function membership(){
+        return $this->factory(\PacketHost\Client\Api\Membership::class);
+    }
 
     /**
      * @return \PacketHost\Client\Api\ApiInterface
