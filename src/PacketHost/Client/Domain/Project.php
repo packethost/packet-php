@@ -2,17 +2,17 @@
 
 class Project extends BaseDomain{
 
-    
-
     /**
      * @var string
      */
     public $name;
 
+    /**
+     * @var string
+     */
+    public $defaultFor;
 
     public $members;
     public $memberships;
     public $invitations;
-
-
 }
