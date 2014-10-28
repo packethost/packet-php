@@ -69,6 +69,13 @@ class PacketApi{
     public function membership(){
         return $this->factory(\PacketHost\Client\Api\Membership::class);
     }
+    
+    /**
+     * @return \PacketHost\Client\Api\Ticket
+     */
+    public function ticket(){
+        return $this->factory(\PacketHost\Client\Api\Ticket::class);
+    }
 
     /**
      * @return \PacketHost\Client\Api\ApiInterface
