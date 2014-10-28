@@ -83,6 +83,13 @@ class PacketApi{
     public function comment(){
         return $this->factory(\PacketHost\Client\Api\Comment::class);
     }
+    
+    /**
+     * @return \PacketHost\Client\Api\TicketComment
+     */
+    public function ticketComment(){
+        return $this->factory(\PacketHost\Client\Api\TicketComment::class);
+    }
 
     /**
      * @return \PacketHost\Client\Api\ApiInterface
