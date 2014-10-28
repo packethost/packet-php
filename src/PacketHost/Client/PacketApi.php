@@ -76,6 +76,13 @@ class PacketApi{
     public function ticket(){
         return $this->factory(\PacketHost\Client\Api\Ticket::class);
     }
+    
+    /**
+     * @return \PacketHost\Client\Api\Comment
+     */
+    public function comment(){
+        return $this->factory(\PacketHost\Client\Api\Comment::class);
+    }
 
     /**
      * @return \PacketHost\Client\Api\ApiInterface
