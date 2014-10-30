@@ -5,27 +5,21 @@ class Ticket extends BaseDomain{
     /**
      * @var string
      */
-    public $title;
+    public $id;
 
     /**
      * @var string
      */
-    public $body;
+    public $conversationMessage;
 
     /**
      * @var string
      */
-    public $status;
+    public $created_at;
 
     /**
-     * @var int
+     * @var boolean
      */
-    public $priority;
-
-    
-    public $organization;
-    public $comments;
-    public $created_by;
-
+    public $open;
 
 }
