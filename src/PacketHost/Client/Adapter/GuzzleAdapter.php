@@ -59,7 +59,6 @@ class GuzzleAdapter extends BaseAdapter implements AdapterInterface
 
             if ( $this->isValidMethod($type )){
                 $response = $this->getClient()->{$type}($resource, $settings);
-                error_log( print_r($response->json(),true));
                 return $this->convertToObjects($response->getBody());
             }
 

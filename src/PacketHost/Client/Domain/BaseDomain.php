@@ -28,6 +28,7 @@ abstract class BaseDomain
      */
     public function __construct( $parameters = [] )
     {
+
         $this->convert( $parameters );
     }
 
