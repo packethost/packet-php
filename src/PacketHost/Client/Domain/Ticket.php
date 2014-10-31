@@ -10,7 +10,7 @@ class Ticket extends BaseDomain{
     /**
      * @var string
      */
-    public $conversationMessage;
+    public $body;
 
     /**
      * @var string
