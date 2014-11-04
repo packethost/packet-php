@@ -9,7 +9,7 @@ Packet PHP Library
 
 ```php
  "require": {
-        "packethost/packet-php-client": "dev-develop"
+        "packethost/packet": "dev-develop"
     },
 
 
