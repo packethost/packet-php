@@ -16,7 +16,7 @@ Packet PHP Library
 "repositories":[
         {
             "type":"git",
-            "url": "https://github.com/packethost/packet-php-client.git"
+            "url": "https://github.com/packethost/packet-php.git"
         }
     ],
 
