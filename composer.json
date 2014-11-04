@@ -1,5 +1,5 @@
 {
-    "name": "packethost/packet-php-client",
+    "name": "packethost/packet-php",
     "description": "The Official PHP library for PacketHost",
     "keywords": [
         "packet",
@@ -26,6 +26,4 @@
             "PacketHost\\Client":"src/"
         }
     }
-
-
 }
