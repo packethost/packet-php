@@ -4,7 +4,7 @@ abstract class BaseApi {
 
     private $adapter;
 
-    private $slug;
+    public $slug;
     
     private $domain;
 

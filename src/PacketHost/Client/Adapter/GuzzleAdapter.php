@@ -43,7 +43,7 @@ class GuzzleAdapter extends BaseAdapter implements AdapterInterface
 
         $data  = [];
 
-        // $settings['debug'] = true;
+        //$settings['debug'] = true;
 
         //Remove null properties from domain objetcs
         if ($content instanceof \PacketHost\Client\Domain\BaseDomain) {
