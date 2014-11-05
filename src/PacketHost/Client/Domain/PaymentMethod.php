@@ -8,5 +8,15 @@ class PaymentMethod extends BaseDomain{
     public $nonce;
 
     public $cardType;
+
+    public $expirationMonth;
+
+    public $expirationYear;
+
+    public $last_4;
+
+    public $user;
+
+    public $projects;
     
 }
