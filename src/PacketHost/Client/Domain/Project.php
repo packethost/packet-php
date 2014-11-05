@@ -15,4 +15,8 @@ class Project extends BaseDomain{
     public $members;
     public $memberships;
     public $invitations;
+
+    public $credits;
+
+    public $creditTotal;
 }
