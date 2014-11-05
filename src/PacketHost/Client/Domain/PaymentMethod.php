@@ -7,14 +7,6 @@ class PaymentMethod extends BaseDomain{
      */
     public $nonce;
 
-    /**
-     * @var
-     */
-    public $user;
-    
-    /**
-     * @var array
-     */
-    public $projects;
+    public $cardType;
     
 }
