@@ -18,5 +18,11 @@ class PaymentMethod extends BaseDomain{
     public $user;
 
     public $projects;
+
+    public $name;
+
+    public $type;
+
+    public $email;
     
 }
