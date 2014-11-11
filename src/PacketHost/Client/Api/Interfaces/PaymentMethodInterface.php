@@ -6,5 +6,5 @@ interface PaymentMethodInterface {
 
     public function get( $id, $options = []);
 
-    
+    public function delete( $id, $options = [] );
 }

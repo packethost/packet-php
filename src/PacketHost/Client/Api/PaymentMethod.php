@@ -19,6 +19,9 @@ class PaymentMethod extends BaseApi implements \PacketHost\Client\Api\Interfaces
         return $this->createEntity( $this->getParams(), $paymentMethod, $options );
     }
     
+    public function delete( $id , $options = []){
+        return $this->deleteEntity($this->getParams( $id ), $options );
+    }
     
     private function getParams($id = ""){
         return [
