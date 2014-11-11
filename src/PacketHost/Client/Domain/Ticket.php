@@ -22,4 +22,6 @@ class Ticket extends BaseDomain{
      */
     public $open;
 
+    public $tickets = [];
+
 }
