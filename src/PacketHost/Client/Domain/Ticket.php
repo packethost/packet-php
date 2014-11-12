@@ -13,15 +13,15 @@ class Ticket extends BaseDomain{
     public $body;
 
     /**
-     * @var string
-     */
-    public $created_at;
-
-    /**
      * @var boolean
      */
     public $open;
 
     public $tickets = [];
+
+    public $user;
+
+    public $assignee;
+   
 
 }
