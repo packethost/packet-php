@@ -2,9 +2,11 @@
 
 interface PaymentMethodInterface {
     
-    public function getAll( $options = []);
+    function getAll( $options = []);
 
-    public function get( $id, $options = []);
+    function get( $id, $options = []);
 
-    public function delete( $id, $options = [] );
+    function delete( $id, $options = [] );
+
+    function update( $id , $paymentMethod, $options = []);
 }

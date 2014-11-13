@@ -26,5 +26,9 @@ class PaymentMethod extends BaseDomain{
     public $email;
 
     public $default;
-    
+
+    public $cardholderName;
+
+    public $billingAddress;
+
 }
