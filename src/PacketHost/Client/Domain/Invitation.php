@@ -24,4 +24,6 @@ class Invitation extends BaseDomain{
 
     public $message;
     
+    public $imageUrl;
+    
 }
