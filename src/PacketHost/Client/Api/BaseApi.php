@@ -66,8 +66,9 @@ abstract class BaseApi {
 
     public function createEntity( $params, $data, $options = []){
 
-        return $this->adapter->post( $this->getUrl( $params, $options ), $data, $this->getHeader( $options ));
+        $createdObject = $this->adapter->post( $this->getUrl( $params, $options ), $data, $this->getHeader( $options ));
 
+        return new $this->domain($createdObject);
     }
 
     public function deleteEntity( $params, $options ){
