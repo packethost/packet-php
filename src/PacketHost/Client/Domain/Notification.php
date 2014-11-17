@@ -17,4 +17,10 @@ class Notification extends BaseDomain{
      */
     public $user;
 
+    /**
+     * Posible values info, warning, error
+     * @var string
+     */
+    public $severity;
+
 }
