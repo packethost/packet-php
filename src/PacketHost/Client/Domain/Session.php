@@ -12,12 +12,13 @@ class Session extends BaseDomain{
      */
     public $password;
 
-    /*public function __construct( $login, $password ){
-        parent::__construct();
+    /**
+     * @var string
+     */
+    public $token;
 
-        $this->login = $login;
-        $this->password = $password;
-    }*/
+    public $expiresAt;
 
+    public $user;
 
 }
