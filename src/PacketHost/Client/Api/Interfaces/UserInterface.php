@@ -6,8 +6,6 @@ interface UserInterface{
 
     public function get( $id, $options = "");
 
-    public function create( $data, $options = "");
-
     public function update( $id, $data, $options = "" );
 
 }
