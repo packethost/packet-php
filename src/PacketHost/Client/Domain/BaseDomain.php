@@ -67,6 +67,9 @@ abstract class BaseDomain
      */
     public function convert( $parameters )
     {
+        if ( !$parameters )
+            return; 
+        
         foreach ($parameters as $property => $value)
         {
             $property = $this->toCamelCase($property);
