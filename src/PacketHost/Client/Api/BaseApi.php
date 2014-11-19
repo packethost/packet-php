@@ -33,7 +33,7 @@ abstract class BaseApi {
     }
 
     private function getHeader( $options ){
-        return isset( $options['header']) ? $options['header']: [];
+        return isset( $options['headers']) ? $options['headers']: [];
     }
 
     public function getEntity( $id, $options = [] ){
@@ -47,7 +47,6 @@ abstract class BaseApi {
 
         $compiledSlug = $this->slug;
         $queryParams =  isset ( $options['queryParams'] )?"?".$options['queryParams']:'';
-
 
         foreach( $params as $key => $value ){
             $compiledSlug = str_replace( ":{$key}",$value, $compiledSlug);

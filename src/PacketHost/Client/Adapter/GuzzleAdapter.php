@@ -39,11 +39,11 @@ class GuzzleAdapter extends BaseAdapter implements AdapterInterface
 
     private function execute( $type, $resource, $content, $headers ){
 
-        $settings = count($headers)>0?$headers:[];
+        $settings = count($headers)>0?['headers'=>$headers]:[];
 
         $data  = [];
 
-        //$settings['debug'] = true;
+        $settings['debug'] = false;
 
         //Remove null properties from domain objetcs
         if ($content instanceof \PacketHost\Client\Domain\BaseDomain) {
@@ -54,7 +54,7 @@ class GuzzleAdapter extends BaseAdapter implements AdapterInterface
         }
 
         $settings['json'] = $data;
-
+        
         try {
 
             if ( $this->isValidMethod($type )){
@@ -126,10 +126,10 @@ class GuzzleAdapter extends BaseAdapter implements AdapterInterface
             }
 
             //Add default header values
-            if ( $this->configuration->getHeaders()){
+            if ( is_array($this->configuration->getHeaders()) && count($this->configuration->getHeaders())>0){
                 $headers[] = $this->configuration->getHeaders();
             }
-
+            
             // Create a client with a base URL
             $this->client = new \GuzzleHttp\Client(
                     [
