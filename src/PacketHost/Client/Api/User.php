@@ -11,7 +11,7 @@ class User extends \PacketHost\Client\Api\BaseApi  implements \PacketHost\Client
         return $this->getEntity( $this->getParams( $id ), $options );
     }
 
-    private function getParams($id = ""){
+    protected function getParams($id = ""){
         return [
             "id" => $id
         ];
