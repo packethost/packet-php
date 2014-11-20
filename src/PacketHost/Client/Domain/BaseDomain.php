@@ -72,12 +72,13 @@ abstract class BaseDomain
         
         foreach ($parameters as $property => $value)
         {
+            $class = get_called_class();
             $property = $this->toCamelCase($property);
             
-            if( method_exists( get_called_class(), 'set' . $property ) )
+            if( method_exists( $class, 'set' . $property ) )
             {
                 $this->$property( $value );
-            } else
+            } elseif( property_exists( $class, $property ) )
             {
                 $this->$property = $value;
             }
