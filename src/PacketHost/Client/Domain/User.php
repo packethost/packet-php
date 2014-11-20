@@ -77,4 +77,8 @@ class User extends BaseDomain{
     */
     public $staff;
 
+    public $otpUri;
+
+    public $phoneNumber;
+
 }
