@@ -13,7 +13,7 @@ class PaymentMethod extends BaseDomain{
 
     public $expirationYear;
 
-    public $last_4;
+    public $last4;
 
     public $user;
 
