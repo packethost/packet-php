@@ -1,6 +1,6 @@
 <?php namespace PacketHost\Client\Domain;
 
-use Doctrine\Common\Inflector\Inflector;
+use \Doctrine\Common\Inflector\Inflector;
 
 abstract class BaseDomain
 {
