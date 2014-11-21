@@ -1,5 +1,7 @@
 <?php namespace PacketHost\Client\Domain;
 
+use \Doctrine\Common\Inflector\Inflector;
+
 abstract class BaseDomain
 {
 
@@ -73,7 +75,7 @@ abstract class BaseDomain
         foreach ($parameters as $property => $value)
         {
             $class = get_called_class();
-            $property = $this->toCamelCase($property);
+            $property = Inflector::camelize($property);
             
             if( method_exists( $class, 'set' . $property ) )
             {
@@ -84,25 +86,6 @@ abstract class BaseDomain
             }
         }
     }
-    
-    private function toCamelCase($property){
-        return lcfirst(preg_replace_callback(
-            '/(^|_)([a-z])/',
-            function ($match) {
-                return strtoupper($match[2]);
-            },
-            $property
-        ));
-    }
-
-    private function fromCamelCase($input) {
-        preg_match_all('!([A-Z][A-Z0-9]*(?=$|[A-Z][a-z0-9])|[A-Za-z][a-z0-9]+)!', $input, $matches);
-        $ret = $matches[0];
-        foreach ($ret as &$match) {
-        $match = $match == strtoupper($match) ? strtolower($match) : lcfirst($match);
-        }
-        return implode('_', $ret);
-    }
 
     public function toArray(){
 
@@ -111,7 +94,7 @@ abstract class BaseDomain
 
         $cloneObj = [];
         foreach($props as $key=>$value){
-            $key = $this->fromCamelCase( $key );
+            $key = Inflector::tableize( $key );
             $cloneObj[$key] = $value;
         }
 

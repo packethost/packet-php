@@ -2,14 +2,14 @@
 
 interface DeviceInterface {
     
-    public function getAll( $projectId, $options = "");
+    function getAll( $projectId, $options = []);
 
-    public function get( $projectId, $id, $options = "");
+    function get( $projectId, $id, $options = []);
 
-    public function create( $projectId, $data, $options = "");
+    function create( $projectId, $data, $options = []);
 
-    public function delete( $projectId, $id, $options = "" );
+    function delete( $projectId, $id, $options = [] );
 
-    public function update( $projectId, $id, $data, $options = "" );
+    function update( $projectId, $id, $data, $options = [] );
     
 }
