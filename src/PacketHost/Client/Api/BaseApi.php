@@ -22,7 +22,7 @@ abstract class BaseApi {
     protected function getEntities( $params, $options = []){
 
         $apiCollection = $this->adapter->get( $this->getUrl( $params, $options ), $this->getHeader( $options ) );
-         
+
         $class=$this->domain;
         return array_map(
             function ($apiObject) use( $class ) {
