@@ -21,4 +21,8 @@ class Project extends BaseDomain{
     public $creditTotal;
 
     public $devices;
+
+    public $paymentMethod;
+
+    public $paymentMethodId;
 }

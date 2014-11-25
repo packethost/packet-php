@@ -2,13 +2,13 @@
 
 interface TransferRequestInterface {
     
-    public function getAll( $options = []);
+    public function getAll( $projectId, $options = []);
     
-    public function get( $id, $options = []);
+    public function get( $projectId, $id, $options = []);
 
-    public function create( $data, $options = []);
+    public function create( $projectId, $data, $options = []);
 
-    public function delete( $id, $options = [] );
+    public function delete( $projectId, $id, $options = [] );
 
-    public function update( $id, $data, $options = [] );
+    public function update( $projectId, $id, $data, $options = [] );
 }
