@@ -5,7 +5,7 @@ class TransferRequest extends BaseApi implements \PacketHost\Client\Api\Interfac
     const ProjectID = "projectId";
     
     public function __construct( \PacketHost\Client\Adapter\AdapterInterface $adapter ){
-        parent::__construct( $adapter, "projects/:projectId/transfers/:id", \PacketHost\Client\Domain\TransferRequest::class, 'transfer-requests');
+        parent::__construct( $adapter, "projects/:projectId/transfers/:id", \PacketHost\Client\Domain\TransferRequest::class, 'transfers');
     }
      
     public function getAll( $projectId, $options = [])
