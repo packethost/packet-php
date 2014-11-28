@@ -22,6 +22,13 @@ class PacketApi{
     }
 
     /**
+     * @return \PacketHost\Client\Api\Application
+     */
+    public function application(){
+        return $this->factory(\PacketHost\Client\Api\Application::class);
+    }
+    
+    /**
      * @return \PacketHost\Client\Api\Invitation
      */
     public function invitation(){
