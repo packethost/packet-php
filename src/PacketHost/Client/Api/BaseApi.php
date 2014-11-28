@@ -53,7 +53,6 @@ abstract class BaseApi {
 
         }
   
-
         return $compiledSlug.$queryParams;
     }
 

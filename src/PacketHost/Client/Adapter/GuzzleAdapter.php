@@ -41,9 +41,11 @@ class GuzzleAdapter extends BaseAdapter implements AdapterInterface
 
         $settings = count($headers)>0?['headers'=>$headers]:[];
 
+
+
         $data  = [];
 
-        //$settings['debug'] = false;
+        // $settings['debug'] = true;
 
         //Remove null properties from domain objetcs
         if ($content instanceof \PacketHost\Client\Domain\BaseDomain) {
@@ -127,7 +129,7 @@ class GuzzleAdapter extends BaseAdapter implements AdapterInterface
 
             //Add default header values
             if ( is_array($this->configuration->getHeaders()) && count($this->configuration->getHeaders())>0){
-                $headers[] = $this->configuration->getHeaders();
+                $headers = array_merge($headers, $this->configuration->getHeaders());
             }
             
             // Create a client with a base URL
