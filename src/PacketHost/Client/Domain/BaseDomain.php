@@ -94,6 +94,8 @@ abstract class BaseDomain
 
         $cloneObj = [];
         foreach($props as $key=>$value){
+            if ( ! $value ) continue;
+            
             $key = Inflector::tableize( $key );
             $cloneObj[$key] = $value;
         }
