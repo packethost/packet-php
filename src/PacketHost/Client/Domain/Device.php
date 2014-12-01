@@ -14,5 +14,9 @@ class Device extends BaseDomain{
     public $charges;
 
     public $plan;
+
+    public $operatingSystem;
+
+    public $tags;
     
 }
