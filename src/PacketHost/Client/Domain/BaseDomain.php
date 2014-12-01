@@ -89,17 +89,15 @@ abstract class BaseDomain
 
     public function toArray(){
 
-        //Remove null properties from domain objetcs
-        $props = array_filter((array) $this);
-
         $cloneObj = [];
-        foreach($props as $key=>$value){
-            if ( ! $value ) continue;
+        foreach($this as $key=>$value){
+            //Remove null properties from domain objetcs
+            if ( is_null($value) ) { continue; }
             
             $key = Inflector::tableize( $key );
             $cloneObj[$key] = $value;
         }
-
+        
         return $cloneObj;
     }
 }
