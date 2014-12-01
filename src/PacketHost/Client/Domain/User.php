@@ -80,5 +80,7 @@ class User extends BaseDomain{
     public $otpUri;
 
     public $phoneNumber;
+    
+    public $imageUrl;
 
 }
