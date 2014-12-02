@@ -6,4 +6,8 @@ class OperatingSystem extends BaseDomain{
 
     public $name;
 
+    public $distro;
+
+    public $version;
+
 }
