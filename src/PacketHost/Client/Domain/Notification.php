@@ -23,4 +23,14 @@ class Notification extends BaseDomain{
      */
     public $severity;
 
+    /**
+     * @var string
+     */
+    public $type;
+
+    /**
+     * @var array
+     */
+    public $context;
+
 }
