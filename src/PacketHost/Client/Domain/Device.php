@@ -18,5 +18,7 @@ class Device extends BaseDomain{
     public $operatingSystem;
 
     public $tags;
+
+    public $facility;
     
 }
