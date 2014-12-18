@@ -12,9 +12,6 @@ interface InvitationInterface {
 
     public function update( $id, $data, $options = [] );
 
-    public function resend( $id, $options = [] );
-
-    
-    
+    public function resend( $id, $options = [] );  
 }
 
