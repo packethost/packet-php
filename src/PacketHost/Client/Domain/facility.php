@@ -16,6 +16,8 @@ class Facility extends BaseDomain{
 
     public $coordinates;
 
+    public $emergencyPhone;
+
     public $features;
 
 }
