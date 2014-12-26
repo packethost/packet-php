@@ -10,13 +10,15 @@ abstract class BaseApi {
 
     private $collectionSlug;
 
-    public function __construct( \PacketHost\Client\Adapter\AdapterInterface $adapter, $slug, $domain, $collectionSlug){
+    private $shallow;
+
+    public function __construct( \PacketHost\Client\Adapter\AdapterInterface $adapter, $slug, $domain, $collectionSlug, $shallow = false ){
         
         $this->adapter = $adapter;
         $this->slug = $slug;
         $this->domain = $domain;
         $this->collectionSlug = $collectionSlug;
-       
+        $this->shallow = $shallow;
     }
 
     protected function getEntities( $params, $options = []){
@@ -38,14 +40,18 @@ abstract class BaseApi {
 
     public function getEntity( $id, $options = [] ){
 
-        $apiObject = $this->adapter->get( $this->getUrl( $id, $options ), $this->getHeader( $options ) );
+        $apiObject = $this->adapter->get( $this->getUrl( $id, $options, $this->shallow), $this->getHeader( $options ) );
 
         return new $this->domain($apiObject);
     }
 
-    private function getUrl( $params = [], $options = []){
+    private function getUrl( $params = [], $options = [], $shallow = false ){
 
-        $compiledSlug = $this->slug;
+        if( $shallow ){
+            $compiledSlug = $this->getShallowSlug( $this->slug );
+        }else{
+            $compiledSlug = $this->slug;
+        }
         $queryParams =  isset ( $options['queryParams'] )?"?".$options['queryParams']:'';
 
         foreach( $params as $key => $value ){
@@ -54,6 +60,13 @@ abstract class BaseApi {
         }
   
         return $compiledSlug.$queryParams;
+    }
+
+    private function getShallowSlug( $slug ){
+
+        $parts = array_slice( explode( '/', $slug ), -2);
+
+        return '/' . implode( '/', $parts );
     }
 
     private function validateOptions( $options ){
@@ -71,13 +84,13 @@ abstract class BaseApi {
 
     public function deleteEntity( $params, $options ){
 
-        return $this->adapter->delete( $this->getUrl( $params, $options ), $this->getHeader( $options ) );
+        return $this->adapter->delete( $this->getUrl( $params, $options, $this->shallow ), $this->getHeader( $options ) );
 
     }
 
     public function updateEntity( $params, $data, $options = [] ){
 
-        $updatedObject = $this->adapter->patch( $this->getUrl( $params, $options ), $data, $this->getHeader( $options )  );
+        $updatedObject = $this->adapter->patch( $this->getUrl( $params, $options, $this->shallow ), $data, $this->getHeader( $options )  );
 
         return new $this->domain($updatedObject);
     }
