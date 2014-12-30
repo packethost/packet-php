@@ -6,6 +6,10 @@ class Facility extends BaseDomain{
 
     public $code;
 
+    public $description;
+
+    public $vendor;
+
     public $address;
 
     public $city;
@@ -19,5 +23,11 @@ class Facility extends BaseDomain{
     public $emergencyPhone;
 
     public $features;
+
+    public $clli;
+
+    public $npanxx;
+
+    public $maxRacks;
 
 }
