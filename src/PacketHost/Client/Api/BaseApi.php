@@ -2,6 +2,8 @@
 
 abstract class BaseApi {
 
+    const SHALLOW = true;
+
     private $adapter;
 
     public $slug;
