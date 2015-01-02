@@ -5,6 +5,7 @@ class JsonConfiguration implements \PacketHost\Client\Adapter\Configuration\Conf
     private $authToken = "";
     private $consumerToken = "";
     private $endPoint = "";
+    private $headers = [];
 
     public function __construct( $jsonFile ){
 
@@ -18,6 +19,7 @@ class JsonConfiguration implements \PacketHost\Client\Adapter\Configuration\Conf
         $this->authToken = $jsonContent->authToken;
         $this->consumerToken = $jsonContent->consumerToken;
         $this->endPoint = $jsonContent->endPoint;
+        $this->headers = $jsonContent->headers;
 
     }
 
@@ -31,6 +33,10 @@ class JsonConfiguration implements \PacketHost\Client\Adapter\Configuration\Conf
 
     public function getEndPoint(){
         return $this->endPoint;
+    }
+
+    public function getHeaders(){
+        return $this->headers;
     }
 
 }
