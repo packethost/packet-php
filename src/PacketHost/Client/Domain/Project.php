@@ -25,4 +25,6 @@ class Project extends BaseDomain{
     public $paymentMethod;
 
     public $paymentMethodId;
+
+    public $isDefault;
 }
