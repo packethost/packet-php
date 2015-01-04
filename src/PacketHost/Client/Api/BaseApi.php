@@ -68,7 +68,7 @@ abstract class BaseApi {
 
         $parts = array_slice( explode( '/', $slug ), -2);
 
-        return '/' . implode( '/', $parts );
+        return implode( '/', $parts );
     }
 
     private function validateOptions( $options ){
