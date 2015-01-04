@@ -1,6 +1,6 @@
 <?php namespace Test\PacketHost\Client\Api;
 
-class NotificationTest extends BaseApiTest{
+class NotificationTest extends BaseTest{
 
     public function __construct(){
 

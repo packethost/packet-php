@@ -1,6 +1,6 @@
 <?php namespace Test\PacketHost\Client\Api;
 
-abstract class BaseApiTest extends \PHPUnit_Framework_TestCase{
+abstract class BaseTest extends \PHPUnit_Framework_TestCase{
     
     protected $mock;
 
