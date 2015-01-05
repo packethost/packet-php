@@ -5,6 +5,9 @@
     private $api;
     private $adapterMock;
 
+    /**
+    * @test
+    */
     public function __construct(){
     
         $this->adapterMock = $this->getMockBuilder('\PacketHost\Client\Adapter\AdapterInterface')
@@ -13,6 +16,8 @@
 
         
         $this->api = new \PacketHost\Client\Api\ProjectInvoice( $this->adapterMock );
+
+        $this->AssertNotNull($this->api);
     }
 
     public function testGetAll()
