@@ -2,10 +2,14 @@
 
 class ProjectTest extends BaseTest{
 
+    /**
+    * @test
+    */
     public function __construct(){
 
         parent::__construct(\PacketHost\Client\Api\Project::class);
 
+        $this->AssertNotNull($this->api);
     }
 
     public function testGetAll()

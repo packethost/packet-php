@@ -2,8 +2,6 @@
 
 interface EmailInterface{
 
-    public function getAll( $options = "");
-
     public function get( $id, $options = "");
 
     public function create( $data, $options = "");

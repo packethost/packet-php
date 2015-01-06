@@ -17,11 +17,6 @@ class Email extends \PacketHost\Client\Api\BaseApi  implements \PacketHost\Clien
         ];
     }
 
-    public function getAll( $options = ""){
-
-        return $this->getEntities( $this->getParams(), $options);
-    }
-
     public function create( $data, $options = ""){
 
         return $this->createEntity( $this->getParams(), $data, $options);

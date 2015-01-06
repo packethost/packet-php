@@ -2,10 +2,14 @@
 
 class UserTest extends BaseTest{
 
+    /**
+    * @test
+    */
     public function __construct(){
 
         parent::__construct(\PacketHost\Client\Api\User::class);
 
+        $this->AssertNotNull($this->api);
     }
 
     public function testGetAll()
