@@ -30,4 +30,8 @@ class Facility extends BaseDomain{
 
     public $maxRacks;
 
+    public $hardware;
+
+    public $devices;
+
 }
