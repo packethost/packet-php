@@ -25,7 +25,7 @@ abstract class BaseApi {
 
     protected function getEntities( $params, $options = []){
 
-        $apiCollection = $this->adapter->get( $this->getUrl( $params, $options ), $this->getHeader( $options ) );
+        $apiCollection = $this->adapter->get( $this->getUrl( $params, $options, $this->getShallow($options)), $this->getHeader( $options ) );
 
         $class=$this->domain;
         return array_map(
@@ -38,6 +38,10 @@ abstract class BaseApi {
 
     private function getHeader( $options ){
         return isset( $options['headers']) ? $options['headers']: [];
+    }
+
+    private function getShallow( $options ){
+        return isset( $options['shallow']) ? $options['shallow']: false;
     }
 
     public function getEntity( $id, $options = [] ){
