@@ -36,4 +36,5 @@ class Facility extends BaseDomain{
 
     public $provider;
 
+    public $providerId;
 }
