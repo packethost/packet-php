@@ -10,10 +10,6 @@ class Facility extends BaseDomain{
 
     public $description;
 
-    public $provider;
-
-    public $providerId;
-
     public $address;
 
     public $address2;
