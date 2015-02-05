@@ -34,4 +34,6 @@ class Facility extends BaseDomain{
 
     public $devices;
 
+    public $provider;
+
 }
