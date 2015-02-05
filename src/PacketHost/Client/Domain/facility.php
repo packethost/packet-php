@@ -4,17 +4,25 @@ class Facility extends BaseDomain{
 
     public $name;
 
+    public $internalName;
+
     public $code;
 
     public $description;
 
-    public $vendor;
+    public $provider;
+
+    public $providerId;
 
     public $address;
+
+    public $address2;
 
     public $city;
 
     public $state;
+
+    public $zipCode;
 
     public $country;
 
