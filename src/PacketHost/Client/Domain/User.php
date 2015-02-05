@@ -83,4 +83,6 @@ class User extends BaseDomain{
     
     public $imageUrl;
 
+    public $projects;
+
 }
