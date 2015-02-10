@@ -32,8 +32,6 @@ class Facility extends BaseDomain{
 
     public $npanxx;
 
-    public $maxRacks;
-
     public $hardware;
 
     public $devices;
@@ -41,4 +39,6 @@ class Facility extends BaseDomain{
     public $provider;
 
     public $providerId;
+
+    public $public;
 }
