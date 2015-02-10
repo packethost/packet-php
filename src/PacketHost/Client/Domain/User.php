@@ -85,4 +85,8 @@ class User extends BaseDomain{
 
     public $projects;
 
+    public $lastLoginAt;
+
+    public $lastLoginFrom;
+
 }
