@@ -12,6 +12,8 @@ php:
 cache: true
 
 before_install: 
+  - npm install grunt grunt-cli
+  - npm install
   - composer config -g github-oauth.github.com $GITHUB_TOKEN
   - composer install
 
@@ -20,9 +22,7 @@ before_script:
   - mkdir -p shippable/testresults
 
 script:
-  - ./vendor/bin/phpcs --standard=ruleset.xml src/
-  - ./vendor/bin/phpcs --standard=ruleset.xml tests/
-  - phpunit --log-junit shippable/testresults/junit.xml --coverage-xml shippable/codecoverage
+  - grunt ci
 
 after_failure:
   - python -c "$(curl -fsSL https://gist.githubusercontent.com/theunraveler/01fe566a977cc1764397/raw/ae86c0fe32692f3d1fa0d19734bdcb50f3d336ca/slack_notifier.py)" --project $PROJECT --org $SLACK_ORG --token $SLACK_TOKEN
