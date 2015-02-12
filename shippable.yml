@@ -1,0 +1,33 @@
+language: php
+
+env:
+  global:
+    - SLACK_ORG=packet PROJECT="<https://github.com/packethost/packet-php|packethost/packet-php>"
+    - COVERAGE=true COVERAGE_REPORTS=shippable/codecoverage CI_REPORTS=shippable/testresults
+    - secure: I14xUiTbRks33vayIb0ANqFdPOX+iy0yus5JX3sIEbUXsCzGVpf3+Jc2iWwjs9WNTEdzdIRGH9JJyyJLvz8IGkHv7HZo4PjrwFkfbO7wJwleHawdZY1rQe8jWg6luEBPZguexOgTus0DOjkL5TkTd4AukD/nW1UnN0WRm9c0hCcZcIebkwQBcHc/E380O3si4iEsMVueLlgyaa5VUqS+sYqYjaKMeg+T4cxNwOpFdFqlx0cESJMFrG5junpf33xojL5TwnuyTG3R3IYLfeEKfr/VqW/XJfe5AtcVK7Sg0EyZQ66UPpyvxpkFlm1fC+5A+dlydHUe/MOzSRv0k6sY2g==
+    
+php: 
+  - 5.5
+
+cache: true
+
+before_install: 
+  - composer config -g github-oauth.github.com $GITHUB_TOKEN
+  - composer install
+
+before_script:
+  - mkdir -p shippable/codecoverage
+  - mkdir -p shippable/testresults
+
+script:
+  - ./vendor/bin/phpcs --standard=ruleset.xml src/
+  - ./vendor/bin/phpcs --standard=ruleset.xml tests/
+  - phpunit --log-junit shippable/testresults/junit.xml --coverage-xml shippable/codecoverage
+
+after_failure:
+  - python -c "$(curl -fsSL https://gist.githubusercontent.com/theunraveler/01fe566a977cc1764397/raw/ae86c0fe32692f3d1fa0d19734bdcb50f3d336ca/slack_notifier.py)" --project $PROJECT --org $SLACK_ORG --token $SLACK_TOKEN
+after_success:
+  - python -c "$(curl -fsSL https://gist.githubusercontent.com/theunraveler/01fe566a977cc1764397/raw/ae86c0fe32692f3d1fa0d19734bdcb50f3d336ca/slack_notifier.py)" --project $PROJECT --org $SLACK_ORG --token $SLACK_TOKEN -s
+
+notifications:
+   email: true
