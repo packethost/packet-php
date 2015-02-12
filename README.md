@@ -33,16 +33,9 @@ Packet PHP Library
 
 ## Running the tests
 
-In order to run the tests you need to create a file called "config.json" in your tests dir, with the following content
 
-```javascript
-
-{
-    "authToken":"xxxx",
-    "consumerToken":"xxxx",
-    "endPoint":"http://localhost:3000/"
-}
-
+```php
+grunt ci
 
 ```
 
