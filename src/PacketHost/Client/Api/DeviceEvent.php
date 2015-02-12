@@ -1,31 +1,33 @@
 <?php namespace PacketHost\Client\Api;
 
-class DeviceEvent extends BaseApi implements \PacketHost\Client\Api\Interfaces\DeviceEventInterface  {
+class DeviceEvent extends BaseApi implements \PacketHost\Client\Api\Interfaces\DeviceEventInterface
+{
 
-    const DeviceID = "deviceId";
-    
-    public function __construct( \PacketHost\Client\Adapter\AdapterInterface $adapter ){
-        parent::__construct( $adapter, 'devices/:deviceId/events/:id', \PacketHost\Client\Domain\Event::class,'events');
+    const DEVICEID = "deviceId";
+
+    public function __construct(\PacketHost\Client\Adapter\AdapterInterface $adapter)
+    {
+        parent::__construct($adapter, 'devices/:deviceId/events/:id', \PacketHost\Client\Domain\Event::class, 'events');
     }
 
-    public function getAll( $deviceId, $options = ""){
+    public function getAll($deviceId, $options = "")
+    {
 
-        return $this->getEntities( $this->getParams($deviceId), $options);
+        return $this->getEntities($this->getParams($deviceId), $options);
     }
 
 
-    public function get( $deviceId, $id, $options = ""){
+    public function get($deviceId, $id, $options = "")
+    {
 
-        return $this->getEntity( $this->getParams( $deviceId, $id ), $options );
+        return $this->getEntity($this->getParams($deviceId, $id), $options);
     }
 
-    private function getParams( $deviceId, $id = ""){
+    private function getParams($deviceId, $id = "")
+    {
         return [
-            self::DeviceID => $deviceId,
+            self::DEVICEID => $deviceId,
             "id" => $id
         ];
     }
-
 }
-
-

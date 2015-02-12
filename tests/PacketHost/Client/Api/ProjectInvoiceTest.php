@@ -1,6 +1,7 @@
 <?php namespace Test\PacketHost\Client\Api;
 
- class ProjectInvoiceTest extends \PHPUnit_Framework_TestCase{
+class ProjectInvoiceTest extends \PHPUnit_Framework_TestCase
+{
 
     private $api;
     private $adapterMock;
@@ -8,14 +9,15 @@
     /**
     * @test
     */
-    public function __construct(){
+    public function __construct()
+    {
     
         $this->adapterMock = $this->getMockBuilder('\PacketHost\Client\Adapter\AdapterInterface')
             ->disableOriginalConstructor()
             ->getMock();
 
         
-        $this->api = new \PacketHost\Client\Api\ProjectInvoice( $this->adapterMock );
+        $this->api = new \PacketHost\Client\Api\ProjectInvoice($this->adapterMock);
 
         $this->AssertNotNull($this->api);
     }
@@ -43,6 +45,6 @@
 
         $response = $this->api->get('c3de2262-7bb6-450b-840e-cf62f66e9bf0', '1140617d-262d-4502-a3d6-771d83c930da');
 
-        $this->assertEquals( new \PacketHost\Client\Domain\Invoice(array()), $response);
+        $this->assertEquals(new \PacketHost\Client\Domain\Invoice(array()), $response);
     }
 }

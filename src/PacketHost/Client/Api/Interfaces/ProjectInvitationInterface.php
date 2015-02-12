@@ -1,10 +1,9 @@
 <?php namespace PacketHost\Client\Api\Interfaces;
 
-interface ProjectInvitationInterface {
+interface ProjectInvitationInterface
+{
     
-    public function getAll( $projectId, $options = []);
+    public function getAll($projectId, $options = []);
     
-    public function get( $projectId, $id, $options = []);
-    
+    public function get($projectId, $id, $options = []);
 }
-

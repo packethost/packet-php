@@ -1,6 +1,7 @@
 <?php namespace PacketHost\Client\Domain;
 
-class Plan extends BaseDomain{
+class Plan extends BaseDomain
+{
 
     /**
      * @var string
@@ -12,5 +13,4 @@ class Plan extends BaseDomain{
     public $specs;
 
     public $pricing;
-
 }

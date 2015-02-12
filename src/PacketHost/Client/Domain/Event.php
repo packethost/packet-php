@@ -1,6 +1,7 @@
 <?php namespace PacketHost\Client\Domain;
 
-class Event extends BaseDomain{
+class Event extends BaseDomain
+{
 
     /**
      * @var string
@@ -10,7 +11,7 @@ class Event extends BaseDomain{
     /**
      * @var string
      */
-    public $type; 
+    public $type;
 
     /**
      * @var string
@@ -26,5 +27,4 @@ class Event extends BaseDomain{
      * @var string
      */
     public $relationships;
-
 }

@@ -1,6 +1,7 @@
 <?php namespace PacketHost\Client\Domain;
 
-class Location extends BaseDomain{
+class Location extends BaseDomain
+{
 
     
     public $slug;
@@ -12,5 +13,4 @@ class Location extends BaseDomain{
     public $coordinates;
     
     public $features;
-
 }

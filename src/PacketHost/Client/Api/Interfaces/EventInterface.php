@@ -1,9 +1,9 @@
 <?php namespace PacketHost\Client\Api\Interfaces;
 
-interface EventInterface {
+interface EventInterface
+{
     
-    public function getAll( $options = "");
+    public function getAll($options = "");
 
-    public function get( $id, $options = "");
-    
+    public function get($id, $options = "");
 }

@@ -1,6 +1,7 @@
 <?php namespace PacketHost\Client\Domain;
 
-class Facility extends BaseDomain{
+class Facility extends BaseDomain
+{
 
     public $name;
 

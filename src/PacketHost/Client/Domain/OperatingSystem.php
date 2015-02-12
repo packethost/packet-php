@@ -1,6 +1,7 @@
 <?php namespace PacketHost\Client\Domain;
 
-class OperatingSystem extends BaseDomain{
+class OperatingSystem extends BaseDomain
+{
 
     public $slug;
 
@@ -9,5 +10,4 @@ class OperatingSystem extends BaseDomain{
     public $distro;
 
     public $version;
-
 }

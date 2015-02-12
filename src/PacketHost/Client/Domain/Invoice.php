@@ -1,6 +1,7 @@
 <?php namespace PacketHost\Client\Domain;
 
-class Invoice extends BaseDomain{
+class Invoice extends BaseDomain
+{
 
     public $amount;
     public $due_on;

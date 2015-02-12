@@ -1,6 +1,7 @@
 <?php namespace PacketHost\Client\Domain;
 
-class Membership extends BaseDomain{
+class Membership extends BaseDomain
+{
 
     /**
      * @var
@@ -13,7 +14,7 @@ class Membership extends BaseDomain{
     public $roles=[];
     
     /**
-     * @var 
+     * @var
      */
     public $project;
 }

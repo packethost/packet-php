@@ -1,6 +1,7 @@
 <?php namespace PacketHost\Client\Api;
 
-abstract class BaseApi {
+abstract class BaseApi
+{
 
     const SHALLOW = true;
 
@@ -14,7 +15,8 @@ abstract class BaseApi {
 
     private $shallow;
 
-    public function __construct( \PacketHost\Client\Adapter\AdapterInterface $adapter, $slug, $domain, $collectionSlug, $shallow = false ){
+    public function __construct(\PacketHost\Client\Adapter\AdapterInterface $adapter, $slug, $domain, $collectionSlug, $shallow = false)
+    {
         
         $this->adapter = $adapter;
         $this->slug = $slug;
@@ -23,89 +25,101 @@ abstract class BaseApi {
         $this->shallow = $shallow;
     }
 
-    protected function getEntities( $params, $options = []){
+    protected function getEntities($params, $options = [])
+    {
 
-        $apiCollection = $this->adapter->get( $this->getUrl( $params, $options, $this->getShallow($options)), $this->getHeader( $options ) );
+        $apiCollection = $this->adapter->get($this->getUrl($params, $options, $this->getShallow($options)), $this->getHeader($options));
 
         $class=$this->domain;
         return array_map(
-            function ($apiObject) use( $class ) {
+            function ($apiObject) use ($class) {
                 return new $class($apiObject);
             },
             $apiCollection->{$this->collectionSlug}
         );
     }
 
-    private function getHeader( $options ){
+    private function getHeader($options)
+    {
         return isset( $options['headers']) ? $options['headers']: [];
     }
 
-    private function getShallow( $options ){
+    private function getShallow($options)
+    {
         return isset( $options['shallow']) ? $options['shallow']: false;
     }
 
-    public function getEntity( $id, $options = [] ){
+    public function getEntity($id, $options = [])
+    {
 
-        $apiObject = $this->adapter->get( $this->getUrl( $id, $options, $this->shallow), $this->getHeader( $options ) );
+        $apiObject = $this->adapter->get($this->getUrl($id, $options, $this->shallow), $this->getHeader($options));
 
         return new $this->domain($apiObject);
     }
 
-    private function getUrl( $params = [], $options = [], $shallow = false ){
+    private function getUrl($params = [], $options = [], $shallow = false)
+    {
 
-        if( $shallow ){
-            $compiledSlug = $this->getShallowSlug( $this->slug );
-        }else{
+        if ($shallow) {
+            $compiledSlug = $this->getShallowSlug($this->slug);
+        } else {
             $compiledSlug = $this->slug;
         }
         $queryParams =  isset ( $options['queryParams'] )?"?".$options['queryParams']:'';
 
-        foreach( $params as $key => $value ){
-            $compiledSlug = str_replace( ":{$key}",$value, $compiledSlug);
+        foreach ($params as $key => $value) {
+            $compiledSlug = str_replace(":{$key}", $value, $compiledSlug);
 
         }
   
         return $compiledSlug.$queryParams;
     }
 
-    private function getShallowSlug( $slug ){
+    private function getShallowSlug($slug)
+    {
 
-        $parts = array_slice( explode( '/', $slug ), -2);
+        $parts = array_slice(explode('/', $slug), -2);
 
-        return implode( '/', $parts );
+        return implode('/', $parts);
     }
 
-    private function validateOptions( $options ){
+    private function validateOptions($options)
+    {
 
         //TODO: We need to validate the options we are sending to the api
         return $options;
     }
 
-    public function createEntity( $params, $data, $options = []){
+    public function createEntity($params, $data, $options = [])
+    {
 
-        $createdObject = $this->adapter->post( $this->getUrl( $params, $options ), $data, $this->getHeader( $options ));
+        $createdObject = $this->adapter->post($this->getUrl($params, $options), $data, $this->getHeader($options));
 
         return new $this->domain($createdObject);
     }
 
-    public function deleteEntity( $params, $options ){
+    public function deleteEntity($params, $options)
+    {
 
-        return $this->adapter->delete( $this->getUrl( $params, $options, $this->shallow ), $this->getHeader( $options ) );
+        return $this->adapter->delete($this->getUrl($params, $options, $this->shallow), $this->getHeader($options));
 
     }
 
-    public function updateEntity( $params, $data, $options = [] ){
+    public function updateEntity($params, $data, $options = [])
+    {
 
-        $updatedObject = $this->adapter->patch( $this->getUrl( $params, $options, $this->shallow ), $data, $this->getHeader( $options )  );
+        $updatedObject = $this->adapter->patch($this->getUrl($params, $options, $this->shallow), $data, $this->getHeader($options));
 
         return new $this->domain($updatedObject);
     }
 
-    protected function getAdapter(){
+    protected function getAdapter()
+    {
         return $this->adapter;
     }
 
-    protected function getSlug(){
+    protected function getSlug()
+    {
         return $this->slug;
     }
 }

@@ -1,18 +1,20 @@
 <?php namespace PacketHost\Client\Api;
 
-class Facility extends BaseApi implements \PacketHost\Client\Api\Interfaces\FacilityInterface {
+class Facility extends BaseApi implements \PacketHost\Client\Api\Interfaces\FacilityInterface
+{
 
-    
-    public function __construct( \PacketHost\Client\Adapter\AdapterInterface $adapter ){
-        parent::__construct( $adapter, "facilities/:id", \PacketHost\Client\Domain\Facility::class, 'facilities');
-    }
-    
-    public function getAll( $options = [])
+    public function __construct(\PacketHost\Client\Adapter\AdapterInterface $adapter)
     {
-        return $this->getEntities( $this->getParams(), $options );
+        parent::__construct($adapter, "facilities/:id", \PacketHost\Client\Domain\Facility::class, 'facilities');
     }
     
-    private function getParams ( $id = ""){
+    public function getAll($options = [])
+    {
+        return $this->getEntities($this->getParams(), $options);
+    }
+
+    private function getParams($id = "")
+    {
         return [
             "id" => $id
         ];

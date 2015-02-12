@@ -1,6 +1,7 @@
 <?php namespace PacketHost\Client\Domain;
 
-class SshKey extends BaseDomain{
+class SshKey extends BaseDomain
+{
 
     /**
      * @var string

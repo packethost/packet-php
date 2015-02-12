@@ -1,6 +1,7 @@
 <?php namespace PacketHost\Client\Api\Interfaces;
 
-interface FacilityInterface {
+interface FacilityInterface
+{
     
-    public function getAll( $options = []);
+    public function getAll($options = []);
 }

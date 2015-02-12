@@ -1,6 +1,7 @@
 <?php namespace PacketHost\Client\Domain;
 
-class PaymentMethod extends BaseDomain{
+class PaymentMethod extends BaseDomain
+{
 
     /**
      * @var string
@@ -30,5 +31,4 @@ class PaymentMethod extends BaseDomain{
     public $cardholderName;
 
     public $billingAddress;
-
 }

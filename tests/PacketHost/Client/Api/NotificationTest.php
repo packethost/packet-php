@@ -1,11 +1,13 @@
 <?php namespace Test\PacketHost\Client\Api;
 
-class NotificationTest extends BaseTest{
+class NotificationTest extends BaseTest
+{
 
     /**
     * @test
     */
-    public function __construct(){
+    public function __construct()
+    {
 
         parent::__construct(\PacketHost\Client\Api\Notification::class);
 
@@ -52,5 +54,4 @@ class NotificationTest extends BaseTest{
 
         $this->assertEquals(new \PacketHost\Client\Domain\Notification($notification), $response);
     }
-
 }

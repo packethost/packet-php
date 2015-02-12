@@ -1,15 +1,15 @@
 <?php namespace PacketHost\Client\Api\Interfaces;
 
-interface DeviceInterface {
-    
-    function getAll( $projectId, $options = []);
+interface DeviceInterface
+{
 
-    function get( $projectId, $id, $options = []);
+    public function getAll($projectId, $options = []);
 
-    function create( $projectId, $data, $options = []);
+    public function get($projectId, $id, $options = []);
 
-    function delete( $projectId, $id, $options = [] );
+    public function create($projectId, $data, $options = []);
 
-    function update( $projectId, $id, $data, $options = [] );
-    
+    public function delete($projectId, $id, $options = []);
+
+    public function update($projectId, $id, $data, $options = []);
 }

@@ -1,6 +1,7 @@
 <?php namespace PacketHost\Client\Domain;
 
-class Invitation extends BaseDomain{
+class Invitation extends BaseDomain
+{
 
     /**
      * @var string
@@ -13,7 +14,7 @@ class Invitation extends BaseDomain{
     public $roles=[];
     
     /**
-     * @var 
+     * @var
      */
     public $project;
 
@@ -25,5 +26,4 @@ class Invitation extends BaseDomain{
     public $message;
     
     public $imageUrl;
-    
 }

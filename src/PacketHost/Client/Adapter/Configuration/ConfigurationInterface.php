@@ -1,12 +1,13 @@
 <?php namespace PacketHost\Client\Adapter\Configuration;
 
-interface ConfigurationInterface{
+interface ConfigurationInterface
+{
 
-    function getAuthToken();
+    public function getAuthToken();
 
-    function getConsumerToken();
+    public function getConsumerToken();
 
-    function getEndPoint();
+    public function getEndPoint();
 
-    function getHeaders();
+    public function getHeaders();
 }
