@@ -1,6 +1,7 @@
 <?php namespace PacketHost\Client\Domain;
 
-class Notification extends BaseDomain{
+class Notification extends BaseDomain
+{
 
     /**
      * @var string
@@ -32,5 +33,4 @@ class Notification extends BaseDomain{
      * @var array
      */
     public $context;
-
 }

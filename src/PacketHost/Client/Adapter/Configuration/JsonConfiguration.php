@@ -1,19 +1,21 @@
 <?php namespace PacketHost\Client\Adapter\Configuration;
 
-class JsonConfiguration implements \PacketHost\Client\Adapter\Configuration\ConfigurationInterface {
+class JsonConfiguration implements \PacketHost\Client\Adapter\Configuration\ConfigurationInterface
+{
 
     private $authToken = "";
     private $consumerToken = "";
     private $endPoint = "";
     private $headers = [];
 
-    public function __construct( $jsonFile ){
+    public function __construct($jsonFile)
+    {
 
-        if ( ! file_exists( $jsonFile ) ){
-            throw new \Exception ('JSon file configuration doesn\'t exists:'.$jsonFile);
+        if (! file_exists($jsonFile)) {
+            throw new \Exception('JSon file configuration doesn\'t exists:'.$jsonFile);
         }
 
-        $content = file_get_contents( $jsonFile );
+        $content = file_get_contents($jsonFile);
         $jsonContent = json_decode($content);
 
         $this->authToken = $jsonContent->authToken;
@@ -23,20 +25,23 @@ class JsonConfiguration implements \PacketHost\Client\Adapter\Configuration\Conf
 
     }
 
-    public function getAuthToken(){
+    public function getAuthToken()
+    {
         return $this->authToken;
     }
 
-    public function getConsumerToken(){
+    public function getConsumerToken()
+    {
         return $this->consumerToken;
     }
 
-    public function getEndPoint(){
+    public function getEndPoint()
+    {
         return $this->endPoint;
     }
 
-    public function getHeaders(){
+    public function getHeaders()
+    {
         return $this->headers;
     }
-
 }

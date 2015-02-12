@@ -1,15 +1,15 @@
 <?php namespace PacketHost\Client\Adapter;
 
-interface AdapterInterface{
+interface AdapterInterface
+{
 
-    function get( $resource, array $headers = array());
+    public function get($resource, array $headers = array());
 
-    function post( $resource, $content, array $headers = array());
+    public function post($resource, $content, array $headers = array());
 
-    function delete ( $resource ,array $headers = array()) ;
+    public function delete($resource, array $headers = array());
 
-    function put ( $resource, $content, array $headers = array() ) ;
+    public function put($resource, $content, array $headers = array());
 
-    function patch ( $resource, $content, array $headers = array() ) ;
-
+    public function patch($resource, $content, array $headers = array());
 }

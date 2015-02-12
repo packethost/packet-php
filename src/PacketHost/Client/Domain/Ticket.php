@@ -1,6 +1,7 @@
 <?php namespace PacketHost\Client\Domain;
 
-class Ticket extends BaseDomain{
+class Ticket extends BaseDomain
+{
 
     /**
      * @var string
@@ -22,6 +23,4 @@ class Ticket extends BaseDomain{
     public $user;
 
     public $assignee;
-   
-
 }

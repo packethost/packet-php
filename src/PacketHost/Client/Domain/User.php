@@ -1,6 +1,7 @@
 <?php namespace PacketHost\Client\Domain;
 
-class User extends BaseDomain{
+class User extends BaseDomain
+{
     
     /**
      * @var string
@@ -68,7 +69,7 @@ class User extends BaseDomain{
     public $timezone;
     
     /**
-     * @var 
+     * @var
      */
     public $twoFactorAuth;
     
@@ -88,5 +89,4 @@ class User extends BaseDomain{
     public $lastLoginAt;
 
     public $lastLoginFrom;
-
 }

@@ -1,9 +1,9 @@
 <?php namespace PacketHost\Client\Api\Interfaces;
 
-interface ProfileInterface{
+interface ProfileInterface
+{
 
-    public function get( $options = "");
+    public function get($options = "");
 
-    public function update( $data, $options = "" );
-
+    public function update($data, $options = "");
 }

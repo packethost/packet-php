@@ -21,8 +21,9 @@ class GuzzleAdapter extends BaseAdapter implements AdapterInterface
         $this->validHttpMethods = [self::GET, self::POST, self::PUT, self::PATCH, self::DELETE];
     }
 
-    private function isValidMethod( $method ){
-        return in_array($method,$this->validHttpMethods);
+    private function isValidMethod($method)
+    {
+        return in_array($method, $this->validHttpMethods);
     }
 
     private function handleResponse($response)
@@ -37,7 +38,8 @@ class GuzzleAdapter extends BaseAdapter implements AdapterInterface
         \PacketHost\Client\Exceptions\RequestExceptions\RequestExceptionFactory::create($request);
     }
 
-    private function execute( $type, $resource, $content, $headers ){
+    private function execute($type, $resource, $content, $headers)
+    {
 
         $settings = count($headers)>0?['headers'=>$headers]:[];
 
@@ -49,14 +51,12 @@ class GuzzleAdapter extends BaseAdapter implements AdapterInterface
         //Remove null properties from domain objetcs
         if ($content instanceof \PacketHost\Client\Domain\BaseDomain) {
             $data = $content->toArray();
-        }
-        else{
+        } else {
             $data = $content;
         }
         $settings['json'] = $data;
         try {
-
-            if ( $this->isValidMethod($type )){
+            if ($this->isValidMethod($type)) {
                 $response = $this->getClient()->{$type}($resource, $settings);
                 return $this->convertToObjects($response->getBody());
             }
@@ -64,11 +64,9 @@ class GuzzleAdapter extends BaseAdapter implements AdapterInterface
             throw new \Exception("Method not found: {$type}");
             
         } catch (\GuzzleHttp\Exception\BadResponseException $e) {
-            
             $this->handleResponse($e->getResponse());
             
         } catch (\GuzzleHttp\Exception\RequestException $e) {
-            
             $this->handleRequest($e->getRequest());
             
         }
@@ -76,27 +74,27 @@ class GuzzleAdapter extends BaseAdapter implements AdapterInterface
     }
     public function get($resource, array $headers = array())
     {
-        return $this->execute( self::GET, $resource, null, $headers );
+        return $this->execute(self::GET, $resource, null, $headers);
     }
 
     public function post($resource, $content, array $headers = array())
     {
-        return $this->execute( self::POST, $resource, $content, $headers );
+        return $this->execute(self::POST, $resource, $content, $headers);
     }
 
     public function patch($resource, $content, array $headers = array())
     {
-        return $this->execute( self::PATCH, $resource, $content, $headers );
+        return $this->execute(self::PATCH, $resource, $content, $headers);
     }
 
     public function delete($resource, array $headers = array())
     {
-        return $this->execute( self::DELETE, $resource, null, $headers );
+        return $this->execute(self::DELETE, $resource, null, $headers);
     }
 
     public function put($resource, $content, array $headers = array())
     {
-        return $this->execute( self::PUT, $resource, $content, $headers );
+        return $this->execute(self::PUT, $resource, $content, $headers);
     }
 
     private function convertToObjects($data)
@@ -109,8 +107,7 @@ class GuzzleAdapter extends BaseAdapter implements AdapterInterface
     private function getClient()
     {
 
-        if ( ! $this->client) {
-
+        if (! $this->client) {
             $headers = [
                 'Content-Type' => 'application/json',
                 'Accept' => 'application/json',
@@ -125,18 +122,19 @@ class GuzzleAdapter extends BaseAdapter implements AdapterInterface
             }
 
             //Add default header values
-            if ( is_array($this->configuration->getHeaders()) && count($this->configuration->getHeaders())>0){
+            if (is_array($this->configuration->getHeaders()) && count($this->configuration->getHeaders())>0) {
                 $headers = array_merge($headers, $this->configuration->getHeaders());
             }
             
             // Create a client with a base URL
             $this->client = new \GuzzleHttp\Client(
-                    [
+                [
                 'base_url' => $this->configuration->getEndPoint(),
                 'defaults' => [
                     'headers' => $headers
                 ]
-                    ]);
+                    ]
+            );
         }
 
         return $this->client;

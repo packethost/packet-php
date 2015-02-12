@@ -1,11 +1,13 @@
 <?php namespace Test\PacketHost\Client\Api;
 
-class UserTest extends BaseTest{
+class UserTest extends BaseTest
+{
 
     /**
     * @test
     */
-    public function __construct(){
+    public function __construct()
+    {
 
         parent::__construct(\PacketHost\Client\Api\User::class);
 

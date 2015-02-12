@@ -1,6 +1,7 @@
 <?php namespace PacketHost\Client\Domain;
 
-class Device extends BaseDomain{
+class Device extends BaseDomain
+{
 
     /**
      * @var string
@@ -22,5 +23,4 @@ class Device extends BaseDomain{
     public $facility;
 
     public $server;
-    
 }

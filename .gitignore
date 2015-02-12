@@ -8,6 +8,7 @@ Thumbs.db
 *.sw*
 *~
 build/
+shippable/
 bin/
 node_modules/
 nbproject

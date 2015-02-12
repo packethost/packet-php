@@ -1,7 +1,7 @@
 <?php namespace PacketHost\Client\Exceptions\ResponseExceptions;
 
-class ClientResponseException extends BaseResponseException {
+class ClientResponseException extends BaseResponseException
+{
 
     
 }
-
