@@ -89,4 +89,6 @@ class User extends BaseDomain
     public $lastLoginAt;
 
     public $lastLoginFrom;
+
+    public $avatarUrl;
 }
