@@ -15,6 +15,8 @@ abstract class BaseApi
 
     private $shallow;
 
+    private $meta;
+
     public function __construct(\PacketHost\Client\Adapter\AdapterInterface $adapter, $slug, $domain, $collectionSlug, $shallow = false)
     {
         
@@ -27,10 +29,12 @@ abstract class BaseApi
 
     protected function getEntities($params, $options = [])
     {
-
         $apiCollection = $this->adapter->get($this->getUrl($params, $options, $this->getShallow($options)), $this->getHeader($options));
 
         $class=$this->domain;
+
+        $this->extractMeta($apiCollection);
+
         return array_map(
             function ($apiObject) use ($class) {
                 return new $class($apiObject);
@@ -121,5 +125,17 @@ abstract class BaseApi
     protected function getSlug()
     {
         return $this->slug;
+    }
+
+    protected function extractMeta(\StdClass $data)
+    {
+        if (isset($data->meta)) {
+            $this->meta = new \PacketHost\Client\Domain\Meta($data->meta);
+        }
+        return $this->meta;
+    }
+
+    public function getMeta(){
+        return $this->meta;
     }
 }
