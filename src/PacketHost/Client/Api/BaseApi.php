@@ -135,7 +135,8 @@ abstract class BaseApi
         return $this->meta;
     }
 
-    public function getMeta(){
+    public function getMeta()
+    {
         return $this->meta;
     }
 }
