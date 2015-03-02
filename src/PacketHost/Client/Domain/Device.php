@@ -25,4 +25,6 @@ class Device extends BaseDomain
     public $server;
 
     public $ipAddresses;
+
+    public $userdata;
 }
