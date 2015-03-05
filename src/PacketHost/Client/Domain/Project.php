@@ -8,11 +8,6 @@ class Project extends BaseDomain
      */
     public $name;
 
-    /**
-     * @var string
-     */
-    public $defaultFor;
-
     public $members;
     public $memberships;
     public $invitations;
@@ -26,8 +21,6 @@ class Project extends BaseDomain
     public $paymentMethod;
 
     public $paymentMethodId;
-
-    public $isDefault;
 
     public $invoices;
 }
