@@ -13,18 +13,6 @@ class Facility extends BaseDomain
 
     public $address;
 
-    public $address2;
-
-    public $city;
-
-    public $state;
-
-    public $zipCode;
-
-    public $country;
-
-    public $coordinates;
-
     public $emergencyPhone;
 
     public $features;
