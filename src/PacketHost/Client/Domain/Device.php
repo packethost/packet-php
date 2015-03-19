@@ -18,6 +18,8 @@ class Device extends BaseDomain
 
     public $operatingSystem;
 
+    public $billingCycle;
+
     public $tags;
 
     public $facility;
