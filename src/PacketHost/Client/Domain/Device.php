@@ -29,4 +29,6 @@ class Device extends BaseDomain
     public $ipAddresses;
 
     public $userdata;
+
+    public $provisioningPercentage;
 }
