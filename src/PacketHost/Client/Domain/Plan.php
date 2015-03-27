@@ -13,4 +13,6 @@ class Plan extends BaseDomain
     public $specs;
 
     public $pricing;
+
+    public $description;
 }
