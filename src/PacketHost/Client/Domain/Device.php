@@ -8,6 +8,8 @@ class Device extends BaseDomain
      */
     public $name;
 
+    public $hostname;
+
     public $state;
 
     public $project;
