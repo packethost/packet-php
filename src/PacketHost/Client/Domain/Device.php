@@ -33,4 +33,6 @@ class Device extends BaseDomain
     public $userdata;
 
     public $provisioningPercentage;
+
+    public $rootPassword;
 }
