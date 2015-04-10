@@ -91,4 +91,10 @@ class User extends BaseDomain
     public $lastLoginFrom;
 
     public $avatarUrl;
+
+    public $validatedAt;
+
+    public $companyName;
+
+    public $companyUrl;
 }
