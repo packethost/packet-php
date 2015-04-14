@@ -92,7 +92,7 @@ class User extends BaseDomain
 
     public $avatarUrl;
 
-    public $validatedAt;
+    public $verifiedAt;
 
     public $companyName;
 
