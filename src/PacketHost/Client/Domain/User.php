@@ -2,37 +2,36 @@
 
 class User extends BaseDomain
 {
-    
     /**
      * @var string
      */
     public $token;
-    
+
     /**
      * @var string
      */
     public $emails = []; // "emails": [ { "address": "melissa@example.com", "default": true },
-    
+
     /**
      * @var string
      */
     public $email;
-    
+
     /**
      * @var string
      */
     public $firstName;
-    
+
     /**
      * @var string
      */
     public $lastName;
-    
+
     /**
      * @var string
      */
     public $fullName;
-    
+
     /**
      * @var string
      */
@@ -52,31 +51,26 @@ class User extends BaseDomain
      * @var string
      */
     public $twitter;
-    
+
     /**
      * @var string
      */
     public $facebook;
-    
+
     /**
      * @var string
      */
     public $linkedin;
-    
+
     /**
      * @var string
      */
     public $timezone;
-    
+
     /**
      * @var
      */
     public $twoFactorAuth;
-    
-    /**
-    * @var boolean
-    */
-    public $staff;
 
     public $otpUri;
 
@@ -97,4 +91,8 @@ class User extends BaseDomain
     public $companyName;
 
     public $companyUrl;
+
+    public $level;
+
+    public $maxProjects;
 }

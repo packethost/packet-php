@@ -9,7 +9,9 @@ class Project extends BaseDomain
     public $name;
 
     public $members;
+
     public $memberships;
+
     public $invitations;
 
     public $credits;
@@ -23,4 +25,6 @@ class Project extends BaseDomain
     public $paymentMethodId;
 
     public $invoices;
+
+    public $maxDevices;
 }
