@@ -95,4 +95,6 @@ class User extends BaseDomain
     public $level;
 
     public $maxProjects;
+
+    public $title;
 }
