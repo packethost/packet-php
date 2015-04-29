@@ -6,8 +6,6 @@ class Device extends BaseDomain
     /**
      * @var string
      */
-    public $name;
-
     public $hostname;
 
     public $state;
