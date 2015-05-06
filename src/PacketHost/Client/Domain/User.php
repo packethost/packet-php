@@ -99,4 +99,6 @@ class User extends BaseDomain
     public $title;
 
     public $couponCode;
+
+    public $fraudDetails;
 }
