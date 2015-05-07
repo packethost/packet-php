@@ -3,9 +3,9 @@
 class User extends \PacketHost\Client\Api\BaseApi implements \PacketHost\Client\Api\Interfaces\UserInterface
 {
 
-    public function __construct(\PacketHost\Client\Adapter\AdapterInterface $adapter)
+    public function __construct(\PacketHost\Client\Adapter\AdapterInterface $adapter, $type = \PacketHost\Client\Domain\User::class)
     {
-        parent::__construct($adapter, 'users/:id', \PacketHost\Client\Domain\User::class, 'users');
+        parent::__construct($adapter, 'users/:id', $type, 'users');
     }
 
     public function get($id, $options = "")
