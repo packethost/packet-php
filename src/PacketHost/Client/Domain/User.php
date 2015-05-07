@@ -78,27 +78,13 @@ class User extends BaseDomain
     
     public $imageUrl;
 
-    public $projects;
-
-    public $lastLoginAt;
-
-    public $lastLoginFrom;
-
     public $avatarUrl;
 
     public $verifiedAt;
-
-    public $companyName;
-
-    public $companyUrl;
 
     public $level;
 
     public $maxProjects;
 
-    public $title;
-
     public $couponCode;
-
-    public $fraudDetails;
 }
