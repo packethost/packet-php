@@ -24,10 +24,5 @@ before_script:
 script:
   - grunt ci
 
-after_failure:
-  - python -c "$(curl -fsSL https://gist.githubusercontent.com/theunraveler/01fe566a977cc1764397/raw/ae86c0fe32692f3d1fa0d19734bdcb50f3d336ca/slack_notifier.py)" --project $PROJECT --org $SLACK_ORG --token $SLACK_TOKEN
-after_success:
-  - python -c "$(curl -fsSL https://gist.githubusercontent.com/theunraveler/01fe566a977cc1764397/raw/ae86c0fe32692f3d1fa0d19734bdcb50f3d336ca/slack_notifier.py)" --project $PROJECT --org $SLACK_ORG --token $SLACK_TOKEN -s
-
 notifications:
    email: true
