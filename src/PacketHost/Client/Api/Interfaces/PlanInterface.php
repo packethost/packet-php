@@ -2,8 +2,5 @@
 
 interface PlanInterface
 {
-    
     public function getAll($options = []);
-    
-    public function get($id, $options = []);
 }

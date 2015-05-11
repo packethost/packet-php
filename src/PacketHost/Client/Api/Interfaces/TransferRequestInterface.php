@@ -3,8 +3,6 @@
 interface TransferRequestInterface
 {
     
-    public function getAll($projectId, $options = []);
-    
     public function get($projectId, $id, $options = []);
 
     public function create($projectId, $data, $options = []);

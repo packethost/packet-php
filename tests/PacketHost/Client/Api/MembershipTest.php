@@ -3,6 +3,9 @@
 class MembershipTest extends BaseTest
 {
 
+    /**
+    * @test
+    */
     public function __construct()
     {
         parent::__construct(\PacketHost\Client\Api\Membership::class);

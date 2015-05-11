@@ -8,7 +8,6 @@ class UserTest extends BaseTest
     */
     public function __construct()
     {
-
         parent::__construct(\PacketHost\Client\Api\User::class);
 
         $this->AssertNotNull($this->api);

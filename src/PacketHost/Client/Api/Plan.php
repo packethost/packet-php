@@ -12,12 +12,6 @@ class Plan extends BaseApi implements \PacketHost\Client\Api\Interfaces\PlanInte
     {
         return $this->getEntities($this->getParams(), $options);
     }
-    
-    public function get($id, $options = [])
-    {
-
-        return $this->getEntity($this->getParams($id), $options);
-    }
 
     private function getParams($id = "")
     {

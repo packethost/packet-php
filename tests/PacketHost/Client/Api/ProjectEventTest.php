@@ -1,6 +1,6 @@
 <?php namespace Test\PacketHost\Client\Api;
 
-class ProjectInvoiceTest extends BaseTest
+class ProjectEventTest extends BaseTest
 {
 
     /**
@@ -8,7 +8,7 @@ class ProjectInvoiceTest extends BaseTest
     */
     public function __construct()
     {
-        parent::__construct(\PacketHost\Client\Api\ProjectInvoice::class);
+        parent::__construct(\PacketHost\Client\Api\ProjectEvent::class);
 
         $this->AssertNotNull($this->api);
     }
@@ -16,8 +16,8 @@ class ProjectInvoiceTest extends BaseTest
     public function testGetAll()
     {
         $this->mock->shouldReceive('get')
-            ->with('projects/c3de2262-7bb6-450b-840e-cf62f66e9bf0/invoices/', array())
-            ->andReturn((object)array("invoices"=>[]))
+            ->with('projects/c3de2262-7bb6-450b-840e-cf62f66e9bf0/events/', array())
+            ->andReturn((object)array("events"=>[]))
             ->once();
         
         $response = $this->api->getAll('c3de2262-7bb6-450b-840e-cf62f66e9bf0');
@@ -28,13 +28,13 @@ class ProjectInvoiceTest extends BaseTest
     public function testGet()
     {
         $this->mock->shouldReceive('get')
-            ->with('projects/c3de2262-7bb6-450b-840e-cf62f66e9bf0/invoices/1140617d-262d-4502-a3d6-771d83c930da', array())
+            ->with('projects/c3de2262-7bb6-450b-840e-cf62f66e9bf0/events/1140617d-262d-4502-a3d6-771d83c930da', array())
             ->andReturn(array())
             ->once();
 
         $response = $this->api->get('c3de2262-7bb6-450b-840e-cf62f66e9bf0', '1140617d-262d-4502-a3d6-771d83c930da');
 
-        $this->assertEquals(new \PacketHost\Client\Domain\Invoice(array()), $response);
+        $this->assertEquals(new \PacketHost\Client\Domain\Event(array()), $response);
     }
 
 }

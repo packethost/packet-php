@@ -3,6 +3,9 @@
 class InvitationTest extends BaseTest
 {
 
+    /**
+    * @test
+    */
     public function __construct()
     {
         parent::__construct(\PacketHost\Client\Api\Invitation::class);
@@ -85,18 +88,17 @@ class InvitationTest extends BaseTest
 
     public function testUpdate()
     {
-        $notification = array(
+        $invitation = array(
             'id' => '379138f1-f389-4ea6-8f2f-518c704bcd6f',
-            'body' => 'test'
         );
 
         $this->mock->shouldReceive('patch')
-            ->with('invitations/379138f1-f389-4ea6-8f2f-518c704bcd6f', $notification, [])
-            ->andReturn($notification)
+            ->with('invitations/379138f1-f389-4ea6-8f2f-518c704bcd6f', $invitation, [])
+            ->andReturn($invitation)
             ->once();
 
-        $response = $this->api->update('379138f1-f389-4ea6-8f2f-518c704bcd6f', $notification);
+        $response = $this->api->update('379138f1-f389-4ea6-8f2f-518c704bcd6f', $invitation);
 
-        $this->assertEquals(new \PacketHost\Client\Domain\Invitation($notification), $response);
+        $this->assertEquals(new \PacketHost\Client\Domain\Invitation($invitation), $response);
     }
 }

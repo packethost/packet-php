@@ -8,23 +8,13 @@ class Profile extends \PacketHost\Client\Api\BaseApi implements \PacketHost\Clie
         parent::__construct($adapter, 'user', \PacketHost\Client\Domain\User::class, '');
     }
 
-    public function get($options = "")
+    public function get($options = [])
     {
-
-        return $this->getEntity($this->getParams(), $options);
+        return $this->getEntity([], $options);
     }
 
-    private function getParams($id = "")
+    public function update($data, $options = [])
     {
-        return [
-            "id" => $id
-        ];
-    }
-
-    public function update($data, $options = "")
-    {
-
-        $user = new \PacketHost\Client\Domain\User($data);
-        return $this->updateEntity($this->getParams(), $user, $options);
+        return $this->updateEntity([], $data, $options);
     }
 }
