@@ -1,6 +1,6 @@
 <?php namespace PacketHost\Client\Api\Interfaces;
 
-interface TransferRequestInterface
+interface ProjectTransferRequestInterface
 {
     
     public function get($projectId, $id, $options = []);
