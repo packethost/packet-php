@@ -2,6 +2,5 @@
 
 class TransferRequest extends BaseDomain
 {
-
     public $membershipId;
 }

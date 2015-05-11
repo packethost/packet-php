@@ -9,7 +9,7 @@ class Invitation extends BaseDomain
     public $invitee;
 
     /**
-     * @var array
+     * @var array [billing,collaborator]
      */
     public $roles=[];
     
