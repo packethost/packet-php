@@ -1,6 +1,6 @@
 <?php namespace PacketHost\Client\Api;
 
-class TransferRequest extends BaseApi implements \PacketHost\Client\Api\Interfaces\TransferRequestInterface
+class ProjectTransferRequest extends BaseApi implements \PacketHost\Client\Api\Interfaces\ProjectTransferRequestInterface
 {
 
     public function __construct(\PacketHost\Client\Adapter\AdapterInterface $adapter)

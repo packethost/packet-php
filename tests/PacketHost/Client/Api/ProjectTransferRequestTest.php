@@ -1,6 +1,6 @@
 <?php namespace Test\PacketHost\Client\Api;
 
-class TransferRequestTest extends BaseTest
+class ProjectTransferRequestTest extends BaseTest
 {
 
     /**
@@ -8,7 +8,7 @@ class TransferRequestTest extends BaseTest
     */
     public function __construct()
     {
-        parent::__construct(\PacketHost\Client\Api\TransferRequest::class);
+        parent::__construct(\PacketHost\Client\Api\ProjectTransferRequest::class);
 
         $this->AssertNotNull($this->api);
     }
