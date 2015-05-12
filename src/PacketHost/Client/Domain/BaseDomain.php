@@ -35,38 +35,6 @@ abstract class BaseDomain
     }
 
     /**
-     * @param string $property
-     * @throws \InvalidArgumentException
-     * @return mixed
-     */
-    public function __get($property)
-    {
-        if (! property_exists($this, $property)) {
-            throw new \InvalidArgumentException(sprintf(
-                'Property "%s::%s" does not exist.',
-                get_class($this),
-                $property
-            ));
-        }
-    }
-
-    /**
-     * @param string $property
-     * @param mixed $value
-     * @throws \InvalidArgumentException
-     */
-    public function __set($property, $value)
-    {
-        if (! property_exists($this, $property)) {
-            throw new \InvalidArgumentException(sprintf(
-                'Property "%s::%s" should exist.',
-                get_class($this),
-                $property
-            ));
-        }
-    }
-
-    /**
      * @param \stdClass|array $parameters
      */
     public function convert($parameters)
@@ -79,9 +47,7 @@ abstract class BaseDomain
             $class = get_called_class();
             $property = Inflector::camelize($property);
             
-            if (method_exists($class, 'set' . $property)) {
-                $this->$property( $value );
-            } elseif (property_exists($class, $property)) {
+            if (property_exists($class, $property)) {
                 $this->$property = $value;
             }
         }

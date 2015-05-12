@@ -18,9 +18,7 @@ class PacketApi
      */
     public function __construct(\PacketHost\Client\Adapter\AdapterInterface $adapter)
     {
-
         $this->adapter = $adapter;
-
     }
 
     /**
@@ -72,44 +70,13 @@ class PacketApi
     }
     
     /**
-     * @return \PacketHost\Client\Api\PaymentMethod
-     */
-    public function paymentMethod()
-    {
-        return $this->factory(\PacketHost\Client\Api\PaymentMethod::class);
-    }
-    
-    /**
      * @return \PacketHost\Client\Api\Membership
      */
     public function membership()
     {
         return $this->factory(\PacketHost\Client\Api\Membership::class);
     }
-    
-    /**
-     * @return \PacketHost\Client\Api\Ticket
-     */
-    public function ticket()
-    {
-        return $this->factory(\PacketHost\Client\Api\Ticket::class);
-    }
-    
-    /**
-     * @return \PacketHost\Client\Api\Comment
-     */
-    public function comment()
-    {
-        return $this->factory(\PacketHost\Client\Api\Comment::class);
-    }
-    
-    /**
-     * @return \PacketHost\Client\Api\TicketComment
-     */
-    public function ticketComment()
-    {
-        return $this->factory(\PacketHost\Client\Api\TicketComment::class);
-    }
+
 
     /**
      * @return \PacketHost\Client\Api\ApiInterface

@@ -2,18 +2,17 @@
 
 class DefaultConfiguration implements \PacketHost\Client\Adapter\Configuration\ConfigurationInterface
 {
+    private $authToken      = "";
+    private $consumerToken  = "";
+    private $headers        = [];
+    private $options        = [];
 
-    private $authToken = "";
-    private $consumerToken = "";
-    private $headers = [];
-
-    public function __construct($authToken, $consumerToken, $headers = [])
+    public function __construct($authToken, $consumerToken = "", $headers = [], $options = [])
     {
-
         $this->authToken = $authToken;
         $this->consumerToken = $consumerToken;
         $this->headers = $headers;
-
+        $this->options = $options;
     }
 
     public function getAuthToken()
@@ -28,11 +27,16 @@ class DefaultConfiguration implements \PacketHost\Client\Adapter\Configuration\C
 
     public function getEndPoint()
     {
-        return "api.packethost.net";
+        return "https://api.packet.net";
     }
 
     public function getHeaders()
     {
         return $this->headers;
+    }
+
+    public function getOptions()
+    {
+        return $this->options;
     }
 }

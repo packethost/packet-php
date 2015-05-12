@@ -10,4 +10,6 @@ interface ConfigurationInterface
     public function getEndPoint();
 
     public function getHeaders();
+
+    public function getOptions();
 }

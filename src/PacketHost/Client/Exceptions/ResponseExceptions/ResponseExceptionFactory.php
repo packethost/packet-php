@@ -5,12 +5,12 @@ class ResponseExceptionFactory
     public static function create($httpResponseCode, $responseBody)
     {
         if ($httpResponseCode >= 500 && $httpResponseCode <= 599) {
-            throw new ServerResponseException(self::getError($responseBody), $httpResponseCode, self::getErrors($responseBody), null);
+            return new ServerResponseException(self::getError($responseBody), $httpResponseCode, self::getErrors($responseBody), null);
         } elseif ($httpResponseCode >= 400 && $httpResponseCode <= 499) {
-            throw new ClientResponseException(self::getError($responseBody), $httpResponseCode, self::getErrors($responseBody), null);
+            return new ClientResponseException(self::getError($responseBody), $httpResponseCode, self::getErrors($responseBody), null);
         } else {
             //General error message
-            throw new BaseResponseException("An error has ocurred", 500, [], null);
+            return new BaseResponseException("An error has ocurred", 500, [], null);
         }
     }
 
@@ -18,9 +18,11 @@ class ResponseExceptionFactory
     {
         if (isset($responseBody->errors)) {
             return $responseBody->errors[0];
+        } if (isset($responseBody->error)) {
+            return $responseBody->error;
         }
 
-        return $responseBody->error;
+        return 'No error :(';
     }
 
     private static function getErrors($responseBody)

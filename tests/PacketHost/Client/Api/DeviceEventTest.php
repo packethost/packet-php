@@ -8,7 +8,6 @@ class DeviceEventTest extends \Test\PacketHost\Client\Api\BaseTest
     */
     public function __construct()
     {
-
         parent::__construct(\PacketHost\Client\Api\DeviceEvent::class);
 
         $this->AssertNotNull($this->api);
