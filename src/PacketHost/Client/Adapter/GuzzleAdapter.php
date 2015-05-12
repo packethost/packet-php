@@ -21,33 +21,22 @@ class GuzzleAdapter extends BaseAdapter implements AdapterInterface
         $this->validHttpMethods = [self::GET, self::POST, self::PUT, self::PATCH, self::DELETE];
     }
 
-    private function isValidMethod($method)
-    {
-        return in_array($method, $this->validHttpMethods);
-    }
-
     private function handleResponse($response)
     {
-
-        \PacketHost\Client\Exceptions\ResponseExceptions\ResponseExceptionFactory::create($response->getStatusCode(), $response->json(['object' => true]));
+        throw \PacketHost\Client\Exceptions\ResponseExceptions\ResponseExceptionFactory::create($response->getStatusCode(), $response->json(['object' => true]));
     }
 
     private function handleRequest($request)
     {
-        
-        \PacketHost\Client\Exceptions\RequestExceptions\RequestExceptionFactory::create($request);
+        throw \PacketHost\Client\Exceptions\RequestExceptions\RequestExceptionFactory::create($request);
     }
 
     private function execute($type, $resource, $content, $headers)
     {
-
         $settings = count($headers)>0?['headers'=>$headers]:[];
-
-
 
         $data  = [];
 
-        //$settings['debug'] = true;
         //Remove null properties from domain objetcs
         if ($content instanceof \PacketHost\Client\Domain\BaseDomain) {
             $data = $content->toArray();
@@ -56,12 +45,8 @@ class GuzzleAdapter extends BaseAdapter implements AdapterInterface
         }
         $settings['json'] = $data;
         try {
-            if ($this->isValidMethod($type)) {
-                $response = $this->getClient()->{$type}($resource, $settings);
-                return $this->convertToObjects($response->getBody());
-            }
-
-            throw new \Exception("Method not found: {$type}");
+            $response = $this->getClient()->{$type}($resource, $settings);
+            return $this->convertToObjects($response->getBody());
             
         } catch (\GuzzleHttp\Exception\BadResponseException $e) {
             $this->handleResponse($e->getResponse());
@@ -72,6 +57,7 @@ class GuzzleAdapter extends BaseAdapter implements AdapterInterface
         }
 
     }
+
     public function get($resource, array $headers = array())
     {
         return $this->execute(self::GET, $resource, null, $headers);
@@ -99,9 +85,7 @@ class GuzzleAdapter extends BaseAdapter implements AdapterInterface
 
     private function convertToObjects($data)
     {
-        $data = json_decode($data);
-
-        return $data;
+        return json_decode($data);
     }
 
     private function getClient()
@@ -126,15 +110,21 @@ class GuzzleAdapter extends BaseAdapter implements AdapterInterface
                 $headers = array_merge($headers, $this->configuration->getHeaders());
             }
             
-            // Create a client with a base URL
-            $this->client = new \GuzzleHttp\Client(
-                [
-                'base_url' => $this->configuration->getEndPoint(),
-                'defaults' => [
-                    'headers' => $headers
-                ]
+            $options = $this->configuration->getOptions();
+            if ($options && isset($options['client'])) {
+                $this->client = $options['client'];
+            } else {
+                // Create a client with a base URL
+                $this->client = new \GuzzleHttp\Client(
+                    [
+                        'base_url' => $this->configuration->getEndPoint(),
+                        'defaults' => [
+                            'headers' => $headers
+                        ]
                     ]
-            );
+                );
+            }
+            
         }
 
         return $this->client;
