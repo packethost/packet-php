@@ -42,6 +42,8 @@ class User extends BaseDomain
      */
     public $password;
 
+    public $currentPassword;
+
     /**
     * @var string
     */
