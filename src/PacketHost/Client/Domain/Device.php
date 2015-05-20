@@ -35,4 +35,6 @@ class Device extends BaseDomain
     public $provisioningEvents;
 
     public $rootPassword;
+
+    public $locked;
 }
