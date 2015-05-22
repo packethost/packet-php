@@ -37,4 +37,6 @@ class Device extends BaseDomain
     public $rootPassword;
 
     public $locked;
+
+    public $user;
 }
