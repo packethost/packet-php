@@ -1,6 +1,8 @@
 Packet PHP Library
 =================
 
+[![Build Status](https://api.shippable.com/projects/54599803a85d45d063d9048a/badge?branchName=master)](https://app.shippable.com/projects/54599803a85d45d063d9048a/builds/latest)
+
 ####Requirements
 * PHP Curl Extension
 * PHP XSL Extension
@@ -22,15 +24,6 @@ Packet PHP Library
 
 ```
 
-## Using the API
-
-
-```php
-
-
-
-```
-
 ## Running the tests
 
 
@@ -39,12 +32,4 @@ grunt ci
 
 ```
 
-## Sending query string parameters and header information 
-
-```php
-[
-    'queryParams'=>'include=user'
-    'header'=>'SomeValue: xxxx'
-]
-```
 
