@@ -14,6 +14,7 @@ cache: true
 before_install: 
   - npm install grunt grunt-cli
   - npm install
+  - composer self-update
   - composer config -g github-oauth.github.com $GITHUB_TOKEN
   - composer install
 
