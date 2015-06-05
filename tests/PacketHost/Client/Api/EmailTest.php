@@ -31,7 +31,6 @@ class EmailTest extends BaseTest
         $email = array(
             'address' => 'test@packet.net'
         );
-
         $this->mock->shouldReceive('post')
             ->with('emails/', $email, array())
             ->andReturn($email)
