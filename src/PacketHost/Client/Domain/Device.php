@@ -37,4 +37,6 @@ class Device extends BaseDomain
     public $locked;
 
     public $user;
+
+    public $deletedAt;
 }
