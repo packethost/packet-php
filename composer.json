@@ -1,6 +1,6 @@
 {
     "name": "packethost/packet",
-    "description": "The Official PHP library for PacketHost",
+    "description": "The Official PHP library for Packet Host",
     "keywords": [
         "packet",
         "packet php"
@@ -8,8 +8,8 @@
     "license": "MIT",
     "authors": [
         {
-            "name": "Packethost <dev@packethost.net>",
-            "homepage": "https://packethost.net"
+            "name": "Packet <help@packet.net>",
+            "homepage": "https://www.packet.net"
         }
     ],
     "require": {
