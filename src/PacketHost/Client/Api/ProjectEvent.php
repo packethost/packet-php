@@ -5,7 +5,7 @@ class ProjectEvent extends BaseApi implements \PacketHost\Client\Api\Interfaces\
 
     public function __construct(\PacketHost\Client\Adapter\AdapterInterface $adapter)
     {
-        parent::__construct($adapter, 'projects/:projectId/events/:id', \PacketHost\Client\Domain\Event::class, 'events');
+        parent::__construct($adapter, 'projects/:projectId/events/', \PacketHost\Client\Domain\Event::class, 'events');
     }
 
     public function getAll($projectId, $options = [])
@@ -13,16 +13,10 @@ class ProjectEvent extends BaseApi implements \PacketHost\Client\Api\Interfaces\
         return $this->getEntities($this->getParams($projectId), $options);
     }
 
-    public function get($projectId, $id, $options = [])
-    {
-        return $this->getEntity($this->getParams($projectId, $id), $options);
-    }
-
-    private function getParams($projectId, $id = "")
+    private function getParams($projectId)
     {
         return [
-            "projectId" => $projectId,
-            "id" => $id
+            "projectId" => $projectId
         ];
     }
 }

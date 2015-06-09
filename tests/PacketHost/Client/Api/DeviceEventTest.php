@@ -24,16 +24,4 @@ class DeviceEventTest extends \Test\PacketHost\Client\Api\BaseTest
 
         $this->assertEquals([], $response);
     }
-
-    public function testGet()
-    {
-        $this->mock->shouldReceive('get')
-            ->with('devices/0d434725-3456-4a70-b712-6e1f1112e0fc/events/28e08193-2ecb-4c0e-a94f-0f1948b45f9e', array())
-            ->andReturn(array())
-            ->once();
-
-        $response = $this->api->get('0d434725-3456-4a70-b712-6e1f1112e0fc', '28e08193-2ecb-4c0e-a94f-0f1948b45f9e');
-
-        $this->assertEquals(new \PacketHost\Client\Domain\Event(array()), $response);
-    }
 }

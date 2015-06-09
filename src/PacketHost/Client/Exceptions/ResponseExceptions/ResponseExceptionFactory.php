@@ -16,13 +16,13 @@ class ResponseExceptionFactory
 
     private static function getError($responseBody)
     {
-        if (isset($responseBody->errors)) {
+        if (isset($responseBody->errors) && is_array($responseBody->errors) && count($responseBody->errors) > 0) {
             return $responseBody->errors[0];
         } if (isset($responseBody->error)) {
             return $responseBody->error;
         }
 
-        return 'No error :(';
+        return 'An error has ocurred';
     }
 
     private static function getErrors($responseBody)
