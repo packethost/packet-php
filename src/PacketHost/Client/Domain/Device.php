@@ -12,8 +12,6 @@ class Device extends BaseDomain
 
     public $project;
 
-    public $charges;
-
     public $plan;
 
     public $operatingSystem;
