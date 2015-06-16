@@ -10,4 +10,6 @@ class OperatingSystem extends BaseDomain
     public $distro;
 
     public $version;
+
+    public $provisionableOn;
 }
