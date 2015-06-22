@@ -2,13 +2,12 @@
 
 class Invoice extends BaseDomain
 {
-
+    public $number;
     public $amount;
-    public $due_on;
-    public $created_at;
-    public $updated_at;
-    public $paid_at;
-    public $via;
-    public $details;
+    public $balance;
+    public $currency;
+    public $targetDate;
+    public $createdOn;
     public $project;
+    public $items;
 }
