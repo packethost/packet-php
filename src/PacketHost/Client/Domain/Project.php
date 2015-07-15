@@ -27,4 +27,6 @@ class Project extends BaseDomain
     public $invoices;
 
     public $maxDevices;
+
+    public $sshKeys;
 }

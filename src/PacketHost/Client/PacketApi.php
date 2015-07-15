@@ -83,12 +83,10 @@ class PacketApi
      */
     private function factory($class)
     {
-
-        if (! isset($apis[$class] )) {
+        if (! isset($apis[$class])) {
             $apis[$class] = new $class($this->adapter);
         }
 
         return $apis[$class];
-
     }
 }

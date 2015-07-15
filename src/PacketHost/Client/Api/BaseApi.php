@@ -45,12 +45,12 @@ abstract class BaseApi
 
     private function getHeader($options)
     {
-        return isset( $options['headers']) ? $options['headers']: [];
+        return isset($options['headers']) ? $options['headers']: [];
     }
 
     private function getShallow($options)
     {
-        return isset( $options['shallow']) ? $options['shallow']: false;
+        return isset($options['shallow']) ? $options['shallow']: false;
     }
 
     public function getEntity($id, $options = [])
@@ -69,7 +69,7 @@ abstract class BaseApi
         } else {
             $compiledSlug = $this->slug;
         }
-        $queryParams =  isset ( $options['queryParams'] )?"?".$options['queryParams']:'';
+        $queryParams =  isset($options['queryParams'])?"?".$options['queryParams']:'';
 
         foreach ($params as $key => $value) {
             $compiledSlug = str_replace(":{$key}", $value, $compiledSlug);
