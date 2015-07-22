@@ -7,12 +7,13 @@ class DeviceTraffic extends BaseApi implements \PacketHost\Client\Api\Interfaces
 
     public function __construct(\PacketHost\Client\Adapter\AdapterInterface $adapter)
     {
-        parent::__construct($adapter, 'devices/:deviceId/traffic/', \PacketHost\Client\Domain\Traffic::class, '');
+        parent::__construct($adapter, 'devices/:deviceId/traffic/', \PacketHost\Client\Domain\Traffic::class, 'result');
     }
 
-    public function create($deviceId, $data, $options = '')
+    public function getAll($deviceId, $options = '')
     {
-        return $this->createEntity($this->getParams($deviceId), $data, $options);
+
+        return $this->getEntities($this->getParams($deviceId), $options);
     }
 
     private function getParams($deviceId)
