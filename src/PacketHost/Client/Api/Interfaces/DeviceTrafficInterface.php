@@ -3,5 +3,5 @@
 interface DeviceTrafficInterface
 {
     
-    public function create($deviceId, $data, $options = '');
+    public function getAll($deviceId, $options = '');
 }
