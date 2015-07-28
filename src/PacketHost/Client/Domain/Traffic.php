@@ -2,5 +2,7 @@
 
 class Traffic extends BaseDomain
 {
-    public $result;
+    public $datetime;
+
+    public $value;
 }
