@@ -9,8 +9,6 @@ env:
 php: 
   - 5.5
 
-cache: true
-
 before_install: 
   - npm install grunt grunt-cli
   - npm install
