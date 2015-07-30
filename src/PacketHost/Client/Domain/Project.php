@@ -16,7 +16,7 @@ class Project extends BaseDomain
 
     public $credits;
 
-    public $creditTotal;
+    public $creditAmount;
 
     public $devices;
 
