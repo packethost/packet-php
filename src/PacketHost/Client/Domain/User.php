@@ -89,4 +89,6 @@ class User extends BaseDomain
     public $maxProjects;
 
     public $couponCode;
+
+    public $features;
 }
