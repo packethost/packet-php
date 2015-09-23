@@ -84,6 +84,8 @@ class User extends BaseDomain
 
     public $verifiedAt;
 
+    public $verificationStage;
+
     public $level;
 
     public $maxProjects;
