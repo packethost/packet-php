@@ -11,4 +11,5 @@ class IpAddress extends BaseDomain
     public $cidr;
     public $assignments;
     public $assignedTo;
+    public $management;
 }
