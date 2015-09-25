@@ -19,6 +19,11 @@ class ProjectIp extends \PacketHost\Client\Api\BaseApi implements \PacketHost\Cl
         return $this->getEntity($this->getParams($projectId, $id), $options);
     }
 
+    public function create($projectId, $data, $options = [])
+    {
+        return $this->createEntity($this->getParams($projectId), $data, $options);
+    }
+
     public function delete($projectId, $id, $options = [])
     {
 
