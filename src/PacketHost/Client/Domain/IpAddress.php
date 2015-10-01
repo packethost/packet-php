@@ -12,4 +12,5 @@ class IpAddress extends BaseDomain
     public $assignments;
     public $assignedTo;
     public $management;
+    public $addon;
 }
