@@ -4,10 +4,6 @@ use \PacketHost\Client\Exceptions\RequestExceptions\RequestExceptionFactory;
 
 class RequestExceptionFactoryTest extends \PHPUnit_Framework_TestCase
 {
-
-    /**
-     * @expectedException \PacketHost\Client\Exceptions\RequestExceptions\BaseRequestException
-     */
     public function testCreate(){
 
         $requestMock = \Mockery::mock('Request');
@@ -15,6 +11,7 @@ class RequestExceptionFactoryTest extends \PHPUnit_Framework_TestCase
             ->once()
             ->andReturn('my-host.com');
 
-        RequestExceptionFactory::create($requestMock);
+        $result = RequestExceptionFactory::create($requestMock);
+        $this->assertTrue($result instanceof \PacketHost\Client\Exceptions\RequestExceptions\BaseRequestException);
     }
 }

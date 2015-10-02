@@ -12,11 +12,12 @@ class ResponseExceptionFactoryTest extends \PHPUnit_Framework_TestCase
     
     public function testCreateClientExc(){
         $result = ResponseExceptionFactory::create(400, $this->getErrors());
-        $this->assertTrue($result instanceof \PacketHost\Client\Exceptions\ResponseExceptions\BaseResponseException);
+        $this->assertTrue($result instanceof \PacketHost\Client\Exceptions\ResponseExceptions\ClientResponseException);
     }
 
-    public function testCreateGeneraltExc(){
-        ResponseExceptionFactory::create(600, $this->getErrors());
+    public function testCreateGeneralExc(){
+        $result = ResponseExceptionFactory::create(600, $this->getErrors());
+        $this->assertTrue($result instanceof \PacketHost\Client\Exceptions\ResponseExceptions\BaseResponseException);
     }
 
     private function getErrors(){
