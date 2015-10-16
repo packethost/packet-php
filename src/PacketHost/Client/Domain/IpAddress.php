@@ -14,4 +14,5 @@ class IpAddress extends BaseDomain
     public $management;
     public $manageable;
     public $addon;
+    public $bill;
 }
