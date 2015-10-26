@@ -3,6 +3,7 @@
 class IpAddress extends BaseDomain
 {
     public $id;
+    public $network;
     public $address;
     public $gateway;
     public $addressFamily;
@@ -15,4 +16,9 @@ class IpAddress extends BaseDomain
     public $manageable;
     public $addon;
     public $bill;
+
+    public function __toString()
+    {
+        return "{$this->network}/{$this->cidr}";
+    }
 }
