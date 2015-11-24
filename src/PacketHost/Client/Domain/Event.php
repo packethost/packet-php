@@ -27,4 +27,8 @@ class Event extends BaseDomain
      * @var string
      */
     public $relationships;
+
+    public $whodunnit;
+
+    public $context;
 }
