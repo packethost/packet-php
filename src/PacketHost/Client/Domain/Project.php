@@ -14,10 +14,6 @@ class Project extends BaseDomain
 
     public $invitations;
 
-    public $credits;
-
-    public $creditAmount;
-
     public $devices;
 
     public $paymentMethod;
