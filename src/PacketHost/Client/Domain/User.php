@@ -93,4 +93,10 @@ class User extends BaseDomain
     public $couponCode;
 
     public $features;
+
+    /**
+     *
+     * @var float
+     */
+    public $creditAmount;
 }
