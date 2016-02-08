@@ -41,4 +41,6 @@ class Device extends BaseDomain
     public $user;
 
     public $shortId;
+
+    public $iqn;
 }
