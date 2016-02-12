@@ -37,14 +37,14 @@ class GuzzleAdapterTest extends \PHPUnit_Framework_TestCase
     private function execute($action, $obj = null)
     {
         $param = [];
-        $clientParam = ['json'=>NULL];
+        $clientParam = ['json' => NULL];
 
         switch($action){
             case "put":
             case "patch":
             case "post":
                 $param = $obj ? $obj : $this->getJsonObj();
-                $clientParam = ['json'=>$obj ? $obj->toArray(): $this->getJsonObj()];
+                $clientParam = ['json' => $obj ? $obj->toArray(): $this->getJsonObj()];
                 break;
         }
 
@@ -71,7 +71,7 @@ class GuzzleAdapterTest extends \PHPUnit_Framework_TestCase
         $responseEx = new \GuzzleHttp\Message\Response(400);
 
         $clientMock->shouldReceive('get')
-            ->once()
+            ->times(5)
             ->andThrow(new \GuzzleHttp\Exception\RequestException('Error',$requestEx, $responseEx));
 
         $adapter = $this->getAdapter($clientMock);

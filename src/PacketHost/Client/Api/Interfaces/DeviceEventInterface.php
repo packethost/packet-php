@@ -3,5 +3,5 @@
 interface DeviceEventInterface
 {
     
-    public function getAll($deviceId, $options = "");
+    public function getAll($deviceId, $options = []);
 }

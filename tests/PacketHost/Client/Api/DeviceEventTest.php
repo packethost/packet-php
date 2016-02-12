@@ -1,8 +1,7 @@
 <?php namespace Test\PacketHost\Client\Api;
 
-class DeviceEventTest extends \Test\PacketHost\Client\Api\BaseTest
+class DeviceEventTest extends BaseTest
 {
-
     /**
     * @test
     */

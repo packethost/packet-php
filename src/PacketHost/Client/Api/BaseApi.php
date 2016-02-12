@@ -55,7 +55,6 @@ abstract class BaseApi
 
     public function getEntity($id, $options = [])
     {
-
         $apiObject = $this->adapter->get($this->getUrl($id, $options, $this->shallow, $this->urlPrefix), $this->getHeader($options));
 
         return new $this->domain($apiObject);

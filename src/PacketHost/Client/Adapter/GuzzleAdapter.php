@@ -4,7 +4,7 @@ namespace PacketHost\Client\Adapter;
 
 class GuzzleAdapter extends BaseAdapter implements AdapterInterface
 {
-
+    const MAX_ATTEMPTS = 5;
     const GET   = "get";
     const POST  = "post";
     const PUT   = "put";
@@ -26,14 +26,14 @@ class GuzzleAdapter extends BaseAdapter implements AdapterInterface
         throw \PacketHost\Client\Exceptions\ResponseExceptions\ResponseExceptionFactory::create($response->getStatusCode(), $response->json(['object' => true]));
     }
 
-    private function handleRequest($request)
+    private function handleRequest($request, $attempts)
     {
-        throw \PacketHost\Client\Exceptions\RequestExceptions\RequestExceptionFactory::create($request);
+        throw \PacketHost\Client\Exceptions\RequestExceptions\RequestExceptionFactory::create($request, $attempts);
     }
 
     private function execute($type, $resource, $content, $headers)
     {
-        $settings = count($headers)>0?['headers'=>$headers]:[];
+        $settings = count($headers)>0 ? ['headers'=>$headers] : [];
 
         $data  = [];
 
@@ -44,18 +44,26 @@ class GuzzleAdapter extends BaseAdapter implements AdapterInterface
             $data = $content;
         }
         $settings['json'] = $data;
-        try {
-            $response = $this->getClient()->{$type}($resource, $settings);
-            return $this->convertToObjects($response->getBody());
-            
-        } catch (\GuzzleHttp\Exception\BadResponseException $e) {
-            $this->handleResponse($e->getResponse());
-            
-        } catch (\GuzzleHttp\Exception\RequestException $e) {
-            $this->handleRequest($e->getRequest());
-            
-        }
 
+        $attempts = 1;
+        $request_exception = null;
+        do {
+            try {
+                $response = $this->getClient()->{$type}($resource, $settings);
+                return $this->convertToObjects($response->getBody());
+            } catch (\GuzzleHttp\Exception\BadResponseException $e) {
+                $this->handleResponse($e->getResponse());
+            } catch (\GuzzleHttp\Exception\RequestException $e) {
+                //increase attempts
+                $attempts++;
+                //save exception for later
+                $request_exception = $e->getRequest();
+                continue;
+            }
+        } while ($attempts <= self::MAX_ATTEMPTS);
+
+        //If we reach here, there was MAX_ATTEMPTS to reach the api and failed
+        $this->handleRequest($e->getRequest(), $attempts - 1);
     }
 
     public function get($resource, array $headers = array())
