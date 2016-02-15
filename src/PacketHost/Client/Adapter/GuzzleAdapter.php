@@ -56,14 +56,14 @@ class GuzzleAdapter extends BaseAdapter implements AdapterInterface
             } catch (\GuzzleHttp\Exception\RequestException $e) {
                 //increase attempts
                 $attempts++;
-                //save exception for later
+                //save request for later
                 $request_exception = $e->getRequest();
                 continue;
             }
         } while ($attempts <= self::MAX_ATTEMPTS);
 
         //If we reach here, there was MAX_ATTEMPTS to reach the api and failed
-        $this->handleRequest($e->getRequest(), $attempts - 1);
+        $this->handleRequest($request_exception, $attempts - 1);
     }
 
     public function get($resource, array $headers = array())
