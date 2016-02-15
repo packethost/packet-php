@@ -2,7 +2,6 @@
 
 interface AdapterInterface
 {
-
     public function get($resource, array $headers = array());
 
     public function post($resource, $content, array $headers = array());

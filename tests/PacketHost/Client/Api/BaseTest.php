@@ -11,7 +11,7 @@ abstract class BaseTest extends \PHPUnit_Framework_TestCase
     {
         $this->mock = \Mockery::mock('\PacketHost\Client\Adapter\AdapterInterface');
 
-        $this->api = new $apiClass( $this->mock);
+        $this->api = new $apiClass($this->mock);
 
     }
 

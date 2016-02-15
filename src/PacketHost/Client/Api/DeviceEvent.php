@@ -10,9 +10,8 @@ class DeviceEvent extends BaseApi implements \PacketHost\Client\Api\Interfaces\D
         parent::__construct($adapter, 'devices/:deviceId/events/', \PacketHost\Client\Domain\Event::class, 'events');
     }
 
-    public function getAll($deviceId, $options = "")
+    public function getAll($deviceId, $options = [])
     {
-
         return $this->getEntities($this->getParams($deviceId), $options);
     }
 
