@@ -43,7 +43,12 @@ class GuzzleAdapter extends BaseAdapter implements AdapterInterface
         } else {
             $data = $content;
         }
-        $settings['json'] = $data;
+
+        if (isset($headers['Content-Type']) && $headers['Content-Type']  === 'text/plain') {
+            $settings['body'] = $data;
+        } else {
+            $settings['json'] = $data;
+        }
 
         $attempts = 1;
         $request_exception = null;
@@ -101,7 +106,6 @@ class GuzzleAdapter extends BaseAdapter implements AdapterInterface
 
         if (! $this->client) {
             $headers = [
-                'Content-Type' => 'application/json',
                 'Accept' => 'application/json',
             ];
 
