@@ -12,4 +12,6 @@ interface ConfigurationInterface
     public function getHeaders();
 
     public function getOptions();
+
+    public function getLogger();
 }

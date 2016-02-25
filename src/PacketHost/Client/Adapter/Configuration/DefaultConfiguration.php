@@ -6,13 +6,15 @@ class DefaultConfiguration implements \PacketHost\Client\Adapter\Configuration\C
     private $consumerToken  = "";
     private $headers        = [];
     private $options        = [];
+    private $logger         = null;
 
-    public function __construct($authToken, $consumerToken = "", $headers = [], $options = [])
+    public function __construct($authToken, $consumerToken = "", $headers = [], $options = [], $logger = null)
     {
         $this->authToken = $authToken;
         $this->consumerToken = $consumerToken;
         $this->headers = $headers;
         $this->options = $options;
+        $this->logger = $logger;
     }
 
     public function getAuthToken()
@@ -38,5 +40,10 @@ class DefaultConfiguration implements \PacketHost\Client\Adapter\Configuration\C
     public function getOptions()
     {
         return $this->options;
+    }
+
+    public function getLogger()
+    {
+        return $this->logger;
     }
 }
