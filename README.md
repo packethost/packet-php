@@ -28,14 +28,22 @@ $config = new PacketHost\Client\Adapter\Configuration\DefaultConfiguration(
     'YOUR_API_KEY'
 );
 
-//Build the adapter
+//Build the adapter and Api
 $adapter = new PacketHost\Client\Adapter\GuzzleAdapter($config);
+$api = new PacketHost\Client\PacketApi($adapter);
 
-// Getting All projects
-$projectsApi = new PacketHost\Client\Api\Project($adapter);
+// Fetching projects
+$projects = $api->project()->getAll();
+var_dump($projects);
 
-var_dump($projectsApi->getAll());
+// Fetching facilities
+$facilities = $api->facility()->getAll();
 
+// Fetching Operating Systems
+$oses = $api->operatingSystem()->getAll();
+
+// Fetching Plans
+$plans = $api->plan()->getAll();
 
 // Creating a device
 $device = new \PacketHost\Client\Domain\Device();
@@ -43,13 +51,11 @@ $device = new \PacketHost\Client\Domain\Device();
 $projectId = 'PROJECT_ID';
 
 $device->hostname = 'sample';
-$device->facility = 'ewr1';
-$device->plan = 'baremetal_0';
-$device->operatingSystem = 'debian_8';
+$device->facility = $facilities[0]->code;
+$device->plan = $plans[0]->slug;
+$device->operatingSystem = $oses[0]->slug;
 
-$devicesApi = new PacketHost\Client\Api\Device($adapter);
-
-$device = $devicesApi->create($projectId, $device);
+$device = $api->device()->create($projectId, $device);
 
 var_dump($device);
 
