@@ -2,8 +2,8 @@
 
 class RequestExceptionFactory
 {
-    public static function create($request, $attempts = 1)
+    public static function create($request, $attempts = 1, $exception = null)
     {
-        return new BaseRequestException("Can't connect to {$request->getHost()} ({$attempts})", 500, null);
+        return new BaseRequestException("Can't connect to {$request->getHost()} ({$attempts})", 500, $exception);
     }
 }

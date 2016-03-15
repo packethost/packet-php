@@ -21,14 +21,16 @@ class GuzzleAdapter extends BaseAdapter implements AdapterInterface
         $this->validHttpMethods = [self::GET, self::POST, self::PUT, self::PATCH, self::DELETE];
     }
 
-    private function handleResponse($response)
+    private function handleResponseException($exception)
     {
-        throw \PacketHost\Client\Exceptions\ResponseExceptions\ResponseExceptionFactory::create($response->getStatusCode(), $response->json(['object' => true]));
+        $response = $exception->getResponse();
+        throw \PacketHost\Client\Exceptions\ResponseExceptions\ResponseExceptionFactory::create($response->getStatusCode(), $response->getBody(), $exception);
     }
 
-    private function handleRequest($request, $attempts)
+    private function handleRequestException($exception, $attempts)
     {
-        throw \PacketHost\Client\Exceptions\RequestExceptions\RequestExceptionFactory::create($request, $attempts);
+        $request = $exception->getRequest();
+        throw \PacketHost\Client\Exceptions\RequestExceptions\RequestExceptionFactory::create($request, $attempts, $exception);
     }
 
     private function execute($type, $resource, $content, $headers)
@@ -57,18 +59,18 @@ class GuzzleAdapter extends BaseAdapter implements AdapterInterface
                 $response = $this->getClient()->{$type}($resource, $settings);
                 return $this->convertToObjects($response->getBody());
             } catch (\GuzzleHttp\Exception\BadResponseException $e) {
-                $this->handleResponse($e->getResponse());
+                $this->handleResponseException($e);
             } catch (\GuzzleHttp\Exception\RequestException $e) {
                 //increase attempts
                 $attempts++;
                 //save request for later
-                $request_exception = $e->getRequest();
+                $request_exception = $e;
                 continue;
             }
         } while ($attempts <= self::MAX_ATTEMPTS);
 
         //If we reach here, there was MAX_ATTEMPTS to reach the api and failed
-        $this->handleRequest($request_exception, $attempts - 1);
+        $this->handleRequestException($request_exception, $attempts - 1);
     }
 
     public function get($resource, array $headers = array())
