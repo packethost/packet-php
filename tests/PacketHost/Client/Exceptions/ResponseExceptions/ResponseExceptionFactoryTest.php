@@ -24,12 +24,12 @@ class ResponseExceptionFactoryTest extends \PHPUnit_Framework_TestCase
         $response = new \stdClass();
         $response->errors = ['Yay!'];
 
-        return $response;
+        return json_encode($response);
     }
 
     private function getError(){
         $response = new \stdClass();
         $response->error = 'Yayyyy!';
-        return $response;
+        return json_encode($response);
     }
 }
