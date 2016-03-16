@@ -23,4 +23,6 @@ class Volume extends BaseDomain
     public $facility;
 
     public $snapshotPolicies;
+
+    public $state;
 }
