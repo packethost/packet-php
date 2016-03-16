@@ -16,7 +16,7 @@ class ResponseExceptionFactory
 
     private static function getError($body)
     {
-        $responseBody = json_decode($body, true);
+        $responseBody = json_decode($body);
         if (isset($responseBody->errors) && is_array($responseBody->errors) && count($responseBody->errors) > 0) {
             return $responseBody->errors[0];
         } if (isset($responseBody->error)) {
@@ -28,7 +28,7 @@ class ResponseExceptionFactory
 
     private static function getErrors($body)
     {
-        $responseBody = json_decode($body, true);
+        $responseBody = json_decode($body);
         if (isset($responseBody->errors)) {
             return $responseBody->errors;
         }
