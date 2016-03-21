@@ -3,9 +3,9 @@
 class Facility extends BaseApi implements \PacketHost\Client\Api\Interfaces\FacilityInterface
 {
 
-    public function __construct(\PacketHost\Client\Adapter\AdapterInterface $adapter)
+    public function __construct(\PacketHost\Client\Adapter\AdapterInterface $adapter, $type = \PacketHost\Client\Domain\Facility::class)
     {
-        parent::__construct($adapter, "facilities/:id", \PacketHost\Client\Domain\Facility::class, 'facilities');
+        parent::__construct($adapter, "facilities/:id", $type, 'facilities');
     }
     
     public function getAll($options = [])
