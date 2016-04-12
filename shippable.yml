@@ -10,7 +10,12 @@ php:
   - 5.5
 
 before_install: 
-  - npm install grunt grunt-cli
+  - cd ~/.nvm && git fetch --tags && git checkout v0.29.0
+  - source ~/.nvm/nvm.sh
+  - nvm use 4 || nvm install 4
+  - cd $SHIPPABLE_REPO_DIR
+  - npm install grunt
+  - npm install grunt-cli
   - npm install
   - composer self-update
   - composer config -g github-oauth.github.com $GITHUB_TOKEN
