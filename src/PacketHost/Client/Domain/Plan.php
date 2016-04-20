@@ -17,4 +17,6 @@ class Plan extends BaseDomain
     public $description;
 
     public $availableIn;
+
+    public $planVersions;
 }
