@@ -2,6 +2,8 @@
 
 class ProjectUsage extends BaseDomain
 {
+    public $facility;
+
     public $type;
 
     public $name;
