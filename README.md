@@ -32,8 +32,13 @@ $config = new PacketHost\Client\Adapter\Configuration\DefaultConfiguration(
 $adapter = new PacketHost\Client\Adapter\GuzzleAdapter($config);
 $api = new PacketHost\Client\PacketApi($adapter);
 
+//Create options array with request params
+$options = [
+    'queryParams' => 'per_page=20'
+];
+
 // Fetching projects
-$projects = $api->project()->getAll();
+$projects = $api->project()->getAll($params);
 var_dump($projects);
 
 // Fetching facilities
