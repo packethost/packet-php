@@ -12,4 +12,5 @@ class Invoice extends BaseDomain
     public $items;
     public $creditAmount;
     public $status;
+    public $user;
 }
