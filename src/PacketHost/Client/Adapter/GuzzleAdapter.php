@@ -14,11 +14,15 @@ class GuzzleAdapter extends BaseAdapter implements AdapterInterface
     private $validHttpMethods = [];
     private $client = null;
 
+    private $logger = null;
+
     public function __construct(\PacketHost\Client\Adapter\Configuration\ConfigurationInterface $configuration)
     {
         parent::__construct($configuration);
 
         $this->validHttpMethods = [self::GET, self::POST, self::PUT, self::PATCH, self::DELETE];
+
+        $this->logger = $this->configuration->getLogger();
     }
 
     private function handleResponseException($exception)
@@ -56,19 +60,27 @@ class GuzzleAdapter extends BaseAdapter implements AdapterInterface
         $request_exception = null;
         do {
             try {
+                $start = microtime(true);
                 $response = $this->getClient()->{$type}($resource, $settings);
+                $time = microtime(true) - $start;
+                $this->logInfo($this->build($type, $resource, $attempts, $settings, $time, $response));
                 return $this->convertToObjects($response->getBody());
             } catch (\GuzzleHttp\Exception\BadResponseException $e) {
+                $response = $e->getResponse();
+                $time = microtime(true) - $start;
+                $this->logError($this->build($type, $resource, $attempts, $settings, $time, $response));
                 $this->handleResponseException($e);
             } catch (\GuzzleHttp\Exception\RequestException $e) {
-                //increase attempts
-                $attempts++;
                 //save request for later
                 $request_exception = $e;
+                //Log error
+                $time = microtime(true) - $start;
+                $this->logError($this->build($type, $resource, $attempts, $settings, $time, $e->getResponse()));
+                //increase attempts
+                $attempts++;
                 continue;
             }
         } while ($attempts <= self::MAX_ATTEMPTS);
-
         //If we reach here, there was MAX_ATTEMPTS to reach the api and failed
         $this->handleRequestException($request_exception, $attempts - 1);
     }
@@ -142,5 +154,60 @@ class GuzzleAdapter extends BaseAdapter implements AdapterInterface
         }
 
         return $this->client;
+    }
+
+    private function build($type, $resource, $attempts, $settings, $elapsed = 0, $response = null)
+    {
+        if ($this->logger) {
+            $host = $this->configuration->getEndPoint();
+            $method = strtoupper($type);
+            $duration = round($elapsed * 1000, 2);
+
+            $format = 'application/json';
+            $data = json_encode($settings['json']);
+            if (isset($settings['headers'])) {
+                if (isset($headers['Content-Type']) && $headers['Content-Type']  === 'text/plain') {
+                    $format = 'text/plain';
+                    $data = $settings['body'];
+                }
+            }
+
+            $staff = "false";
+            $configHeaders = $this->configuration->getHeaders();
+            if (isset($configHeaders['X-Packet-Staff'])) {
+                $staff = $configHeaders['X-Packet-Staff'] ? "true" : "false";
+            }
+
+            $authToken = $this->configuration->getAuthToken();
+
+            $status = 0;
+            $error = "";
+            if ($response) {
+                $status = $response->getStatusCode();
+                if ($status < 200 || $status > 299) {
+                    $error = $response->getBody();
+                    $error = " error={$error}";
+                }
+            } else {
+                $error = " error=Can't connect to {$host}";
+            }
+
+            return "API method={$method} path={$resource} attempt={$attempts} status={$status} duration={$duration} format={$format} body={$data} auth-token={$authToken} staff={$staff}{$error}";
+        }
+        return "";
+    }
+
+    private function logInfo($message, $extra = [])
+    {
+        if ($this->logger) {
+            $this->logger->addInfo($message, $extra);
+        }
+    }
+
+    private function logError($message, $extra = [])
+    {
+        if ($this->logger) {
+            $this->logger->addError($message, $extra);
+        }
     }
 }
