@@ -1,7 +1,9 @@
 Packet PHP Library
 =================
 
-[![Build Status](https://api.shippable.com/projects/54599803a85d45d063d9048a/badge?branchName=master)](https://app.shippable.com/projects/54599803a85d45d063d9048a/builds/latest)
+[![Build Status](https://api.shippable.com/projects/54599803a85d45d063d9048a/badge?branchName=master)](https://app.shippable.com/projects/54599803a85d45d063d9048a/builds/latest) ![](https://img.shields.io/badge/Stability-Experimental-red.svg)
+
+This repository is [Experimental](https://github.com/packethost/standards/blob/master/experimental-statement.md) meaning that it's based on untested ideas or techniques and not yet established or finalized or involves a radically new and innovative style! This means that support is best effort (at best!) and we strongly encourage you to NOT use this in production.
 
 ####Requirements
 * PHP Curl Extension
